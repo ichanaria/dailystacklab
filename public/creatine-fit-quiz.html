@@ -1697,7 +1697,8 @@ async function submitEmail() {
      - Meta Pixel / TikTok Pixel / GA4 form_submit event
   ──────────────────────────────────────────────────────── */
   console.log('Creatine quiz submission:', { profile: D, analysis: lastAnalysis });
-  saveLead(D, lastAnalysis);
+  D.consent = true;
+await saveLead(D, lastAnalysis);
 
   // Hide all steps
   for (var i = 0; i <= 4; i++) {
@@ -1744,11 +1745,12 @@ async function submitEmail() {
 
 function saveLead(profile, analysis) {
   if (window.location.protocol === 'file:') return;
-  fetch('/api/leads', {
+  return fetch('/api/leads', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       profile: profile,
+      consent: true,
       analysis: {
         profileType: analysis.profileType,
         topLanes: analysis.topLanes,
@@ -1756,9 +1758,12 @@ function saveLead(profile, analysis) {
       },
       source: 'creatine_fit_quiz'
     })
-  }).catch(function(err) {
-    console.warn('Lead save unavailable:', err);
-  });
+ }).then(function(res) {
+  if (!res.ok) throw new Error('Lead save failed with status ' + res.status);
+  return res.json();
+}).catch(function(err) {
+  console.warn('Lead save unavailable:', err);
+});
 }
 
 async function generateAIReport() {
