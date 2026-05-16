@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Daily Stack Lab — Lead Dashboard</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body {
+        background: var(--cream);
+        padding-bottom: 60px;
+      }
+      .admin-shell {
+        width: min(1280px, calc(100% - 28px));
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+      .admin-head {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+      .admin-head h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+      }
+      .admin-bar {
+        display: grid;
+        gap: 12px;
+        padding: 18px;
+        margin-bottom: 22px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--white);
+        box-shadow: var(--shadow-sm);
+      }
+      .admin-bar .field input {
+        padding: 12px 14px;
+        border: 1px solid var(--line-strong);
+        border-radius: 10px;
+        background: var(--cream);
+        font-size: 0.95rem;
+        width: 100%;
+      }
+      .admin-bar .field input:focus { outline: 0; border-color: var(--charcoal); background: var(--white); }
+      .admin-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .stats-row {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        margin-bottom: 18px;
+      }
+      .stat-card {
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--white);
+      }
+      .stat-card span {
+        display: block;
+        color: var(--ink-60);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .stat-card strong {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--charcoal);
+      }
+      .lead-table-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--white);
+        box-shadow: var(--shadow-sm);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1080px;
+        font-size: 0.86rem;
+      }
+      th, td {
+        padding: 12px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: var(--cream);
+        font-weight: 800;
+        font-size: 0.74rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-60);
+        position: sticky;
+        top: 0;
+      }
+      tbody tr:nth-child(odd) { background: rgba(247, 241, 232, 0.4); }
+      tbody tr:hover { background: rgba(244, 178, 60, 0.08); }
+      .empty-state {
+        padding: 32px;
+        text-align: center;
+        color: var(--ink-60);
+      }
+      .empty-state strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--ink);
+        font-size: 1.05rem;
+      }
+      .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 99px;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+      .badge.yes { background: rgba(157, 216, 75, 0.25); color: #3a581a; }
+      .badge.no { background: rgba(163, 58, 33, 0.15); color: #a33a21; }
+      .lang-badge {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: var(--charcoal);
+        color: var(--gold);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      @media (min-width: 760px) {
+        .admin-bar { grid-template-columns: 1fr auto; align-items: end; }
+      }
+    </style>
+  </head>
+  <body class="lang-en">
+    <main class="admin-shell">
+      <div class="admin-head">
+        <div>
+          <p class="eyebrow">CRM-style validation view</p>
+          <h1>Lead dashboard</h1>
+        </div>
+        <a class="button button-ghost button-small" href="/">← Back to site</a>
+      </div>
+
+      <div class="admin-bar">
+        <label class="field">
+          <span class="field-label">Admin token</span>
+          <input id="tokenInput" type="password" placeholder="Required when ADMIN_TOKEN env var is set" autocomplete="off" />
+        </label>
+        <div class="admin-actions">
+          <button class="button button-primary" id="loadButton" type="button">Load leads</button>
+          <a class="button button-ghost" id="exportLink" href="/api/leads.csv" download>Export CSV</a>
+        </div>
+      </div>
+
+      <div class="stats-row" id="statsRow" hidden>
+        <div class="stat-card"><span>Total leads</span><strong id="statTotal">0</strong></div>
+        <div class="stat-card"><span>Drink mix</span><strong id="statDrink">0</strong></div>
+        <div class="stat-card"><span>Gummy</span><strong id="statGummy">0</strong></div>
+        <div class="stat-card"><span>Sample interest</span><strong id="statSample">0</strong></div>
+      </div>
+
+      <div class="lead-table-wrap" id="leadTableWrap">
+        <div class="empty-state">
+          <strong>No data loaded yet</strong>
+          Enter your admin token (if set) and click "Load leads" to see submissions.
+        </div>
+      </div>
+    </main>
+    <script src="/admin.js"></script>
+  </body>
+</html>
