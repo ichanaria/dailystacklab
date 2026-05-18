@@ -1,0 +1,189 @@
+{
+  "version": "2.0.0",
+  "angles": {
+    "strength": {
+      "label": "Strength and lean mass",
+      "citations": [
+        {
+          "title": "Effect of creatine supplementation during resistance training on lean tissue mass and muscular strength in older adults: a meta-analysis",
+          "citation": "Chilibeck et al., 2017, Open Access Journal of Sports Medicine",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5679696/",
+          "plainLanguageUse": "Use for final reps, progressive training, strength routines, and lean-mass support."
+        },
+        {
+          "title": "Effects of creatine supplementation and resistance training on muscle strength and weightlifting performance",
+          "citation": "Rawson & Volek, 2003, Journal of Strength and Conditioning Research",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/14636102/",
+          "plainLanguageUse": "Use for gym and resistance-training context."
+        },
+        {
+          "title": "Effects of oral creatine supplementation on muscular strength and body composition",
+          "citation": "Med Sci Sports Exerc., 2000",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/10731009/",
+          "plainLanguageUse": "Use for strength and body-composition context without overclaiming body transformation."
+        }
+      ]
+    },
+    "endurance": {
+      "label": "Repeated effort and fatigue resistance",
+      "citations": [
+        {
+          "title": "The effects of four weeks of creatine supplementation and high-intensity interval training on cardiorespiratory fitness",
+          "citation": "Graef et al., 2009, Journal of the International Society of Sports Nutrition",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/19909536/",
+          "plainLanguageUse": "Use for running, intervals, hills, sport surges, and training frequency."
+        },
+        {
+          "title": "Effects of Oral Creatine Supplementation on Power Output during Repeated Treadmill Sprinting",
+          "citation": "Nutrients, 2022",
+          "url": "https://www.mdpi.com/2072-6643/14/6/1140",
+          "plainLanguageUse": "Use for repeated sprint, stop-start, court sport, and final-stretch explanations."
+        },
+        {
+          "title": "Creatine Supplementation and Endurance Performance: Surges and Sprints to Win the Race",
+          "citation": "Journal of Dietary Supplements, 2023",
+          "url": "https://www.tandfonline.com/doi/full/10.1080/15502783.2023.2204071",
+          "plainLanguageUse": "Use for surges and sprints within endurance sport, with note that publisher access may be restricted."
+        },
+        {
+          "title": "Creatine Supplementation Improves Phosphagen Energy Pathway During Supramaximal Effort, but Does Not Improve Anaerobic Capacity or Performance",
+          "citation": "Zagatto et al., 2019, Frontiers in Physiology",
+          "url": "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2019.00352/full",
+          "plainLanguageUse": "Use for running nuance: creatine may support short high-effort energy contribution, but should not be promised as better long-distance pace."
+        }
+      ]
+    },
+    "stopStart": {
+      "label": "Stop-start sport and hybrid conditioning",
+      "citations": [
+        {
+          "title": "Short-Term Creatine Supplementation and Repeated Sprint Ability: A Systematic Review and Meta-Analysis",
+          "citation": "Glaister & Rhodes, 2022, International Journal of Sport Nutrition and Exercise Metabolism",
+          "url": "https://explore.openaire.eu/search/publication?pid=10.1123%2Fijsnem.2022-0072",
+          "plainLanguageUse": "Use for padel, tennis, futsal, HIIT, Hyrox-style training, and sports that repeat short hard efforts."
+        },
+        {
+          "title": "Creatine supplementation can improve impact control in high-intensity interval training",
+          "citation": "Azevedo et al., 2019, Nutrition",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30708260/",
+          "plainLanguageUse": "Use for HIIT and running-based interval sessions; frame as impact-control research, not a broad injury-prevention claim."
+        },
+        {
+          "title": "Type of Diet and Sports Supplements in Padel Players According to Level of Competition and Sex",
+          "citation": "Toro-Roman et al., 2023, Nutrients",
+          "url": "https://www.mdpi.com/2072-6643/15/16/3633",
+          "plainLanguageUse": "Use for padel market relevance and supplement behavior, not as proof that creatine improves padel performance."
+        },
+        {
+          "title": "Creatine loading does not impact on stroke performance in tennis",
+          "citation": "Pluim et al., 2001, International Journal of Sports Medicine",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/11258645/",
+          "plainLanguageUse": "Use as a caution for tennis: do not claim better stroke skill or instant match performance."
+        }
+      ]
+    },
+    "cognitive": {
+      "label": "Focus and cognitive energy",
+      "citations": [
+        {
+          "title": "The effects of creatine supplementation on cognitive function in adults: a systematic review and meta-analysis",
+          "citation": "Frontiers in Nutrition, 2024",
+          "url": "https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2024.1424972/full",
+          "plainLanguageUse": "Use for workday focus, mental fatigue, and brain-energy framing."
+        },
+        {
+          "title": "The effects of creatine supplementation on cognitive performance: a randomised controlled study",
+          "citation": "Sandkuhler et al., 2023, BMC Medicine",
+          "url": "https://bmcmedicine.biomedcentral.com/articles/10.1186/s12916-023-03146-5",
+          "plainLanguageUse": "Use for controlled cognitive-performance context."
+        },
+        {
+          "title": "Effects of creatine supplementation on cognitive function of healthy individuals: a systematic review of randomized controlled trials",
+          "citation": "Avgerinos et al., 2018, Experimental Gerontology",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6093191/",
+          "plainLanguageUse": "Use for healthy-adult cognition and memory/intelligence-task context."
+        }
+      ]
+    },
+    "recovery": {
+      "label": "Recovery rhythm and sleep pressure",
+      "citations": [
+        {
+          "title": "Single dose creatine improves cognitive performance and induces changes in cerebral high energy phosphates during sleep deprivation",
+          "citation": "Gordji-Nejad et al., 2024, Scientific Reports",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38418482/",
+          "plainLanguageUse": "Use for sleep-pressure and high-demand day context without claiming sleep treatment."
+        },
+        {
+          "title": "Creatine Improves Total Sleep Duration Following Resistance Training Days versus Non-Resistance Training Days among Naturally Menstruating Females",
+          "citation": "Nutrients, 2024",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11357324/",
+          "plainLanguageUse": "Use carefully for recovery-day context."
+        },
+        {
+          "title": "Effect of creatine supplementation and sleep deprivation, with mild exercise, on cognitive and psychomotor performance, mood state, and plasma concentrations of catecholamines and cortisol",
+          "citation": "McMorris et al., 2006, Psychopharmacology",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/16416332/",
+          "plainLanguageUse": "Use for sleep-deprivation resilience and psychomotor performance under stress."
+        }
+      ]
+    },
+    "women": {
+      "label": "Women and active wellness",
+      "citations": [
+        {
+          "title": "Creatine Supplementation in Women's Health: A Lifespan Perspective",
+          "citation": "Smith-Ryan et al., 2021, Nutrients",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7998865/",
+          "plainLanguageUse": "Use for women-specific framing and inclusive education."
+        },
+        {
+          "title": "Does Creatine Supplementation Enhance Performance in Active Females? A Systematic Review",
+          "citation": "Nutrients, 2025",
+          "url": "https://www.mdpi.com/2072-6643/17/2/238",
+          "plainLanguageUse": "Use for active female performance context."
+        }
+      ]
+    },
+    "aging": {
+      "label": "Active aging and mobility",
+      "citations": [
+        {
+          "title": "Effectiveness of Creatine Supplementation on Aging Muscle and Bone: Focus on Falls Prevention and Inflammation",
+          "citation": "Gualano et al., 2019, Journal of Clinical Medicine",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6518405/",
+          "plainLanguageUse": "Use for active-aging, muscle, and bone context with conservative language."
+        },
+        {
+          "title": "Meta-Analysis Examining the Importance of Creatine Ingestion Strategies on Lean Tissue Mass and Strength in Older Adults",
+          "citation": "Forbes et al., 2021, Nutrients",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8229907/",
+          "plainLanguageUse": "Use for older-adult lean tissue and strength education."
+        }
+      ]
+    },
+    "safety": {
+      "label": "Safety and misconceptions",
+      "citations": [
+        {
+          "title": "Common questions and misconceptions about creatine supplementation: what does the scientific evidence really show?",
+          "citation": "Antonio et al., 2021, Journal of the International Society of Sports Nutrition",
+          "url": "https://jissn.biomedcentral.com/articles/10.1186/s12970-021-00412-w",
+          "plainLanguageUse": "Use for bloating, bulky, dose, hair-loss concern, and general misconception responses."
+        },
+        {
+          "title": "The safety and efficacy of creatine monohydrate supplementation: what we have learned from the past 25 years of research",
+          "citation": "Kreider et al., 2017, GSSI Sports Science Exchange",
+          "url": "https://www.gssiweb.org/sports-science-exchange/article/the-safety-and-efficacy-of-creatine-monohydrate-supplementation-what-we-have-learned-from-the-past-25-years-of-research",
+          "plainLanguageUse": "Use for broad safety reassurance in healthy adults."
+        },
+        {
+          "title": "Studies on the safety of creatine supplementation",
+          "citation": "Poortmans & Francaux, 2011, Amino Acids",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/21399917/",
+          "plainLanguageUse": "Use for kidney/safety concern context in healthy users."
+        }
+      ]
+    }
+  }
+}

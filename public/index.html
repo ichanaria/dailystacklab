@@ -47,7 +47,7 @@
               <span data-lang="id">Stack harian yang lebih sederhana untuk hidup aktif.</span>
             </h1>
             <p class="hero-sub">
-              <span data-lang="en">A new wellness stack for people who move, work, train, parent — and want supplement habits that actually stick. Starting with creatine, made easier.</span>
+              <span data-lang="en">For people who move, work, train, and want one habit that actually sticks. Starting with creatine in a format you'll actually repeat.</span>
               <span data-lang="id">Wellness stack baru untuk yang bergerak, bekerja, latihan, mengurus keluarga — dan ingin kebiasaan suplemen yang konsisten. Dimulai dari creatine, dibuat lebih mudah.</span>
             </p>
             <div class="hero-ctas">
@@ -65,27 +65,31 @@
             </p>
           </div>
 
-          <div class="hero-visual" aria-hidden="true">
-            <div class="stack-card stack-recover">
-              <span class="stack-tag">Night</span>
-              <strong class="stack-title">Recover</strong>
-              <span class="stack-status">Concept</span>
+          <div class="hero-visual" data-concept-carousel aria-label="PWR UP product concepts">
+            <div class="concept-stage">
+              <img class="concept-card is-active" data-concept-slide src="/images/pwr-up-move-card.svg" alt="PWR UP Move concept card" />
+              <img class="concept-card is-next" data-concept-slide src="/images/pwr-up-focus-card.svg" alt="PWR UP Focus concept card" />
+              <img class="concept-card is-prev" data-concept-slide src="/images/pwr-up-recover-card.svg" alt="PWR UP Recover concept card" />
             </div>
-            <div class="stack-card stack-focus">
-              <span class="stack-tag">Afternoon</span>
-              <strong class="stack-title">Focus</strong>
-              <span class="stack-status">Concept</span>
-            </div>
-            <div class="stack-card stack-move">
-              <span class="stack-tag">Morning</span>
-              <strong class="stack-title">Move</strong>
-              <span class="stack-meta">Creatine-based stack</span>
-              <span class="stack-status active">
-                <span class="dot"></span>
-                <span data-lang="en">Validating now</span><span data-lang="id">Sedang divalidasi</span>
-              </span>
+            <div class="concept-controls" aria-label="Product concept carousel controls">
+              <div class="concept-dots" aria-hidden="true">
+                <span class="concept-dot is-active" data-concept-dot="0"></span>
+                <span class="concept-dot" data-concept-dot="1"></span>
+                <span class="concept-dot" data-concept-dot="2"></span>
+              </div>
+              <button class="concept-next" type="button" data-concept-next aria-label="Next product concept">
+                <span data-lang="en">Next</span><span data-lang="id">Lanjut</span>
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- ======== 2. MOVEMENT IMAGE REVEAL ======== -->
+      <section class="movement-reveal section" aria-label="Daily Stack Lab movement mood">
+        <div class="movement-window js-reveal">
+          <img src="/images/daily-stack-lab-runner-reveal.png" alt="Runner in motion with Daily Stack Lab movement message" loading="lazy" />
         </div>
       </section>
 
@@ -188,8 +192,8 @@
             <span data-lang="id">Dua format. Satu tugas: bisa kamu lakukan setiap hari.</span>
           </h2>
           <p class="sec-sub">
-            <span data-lang="en">Designed for active professionals, runners, padel players, gym beginners, active parents, and wellness-curious women — not bodybuilders.</span>
-            <span data-lang="id">Dirancang untuk profesional aktif, pelari, pemain padel, pemula gym, orang tua aktif, dan wanita yang penasaran wellness — bukan binaragawan.</span>
+            <span data-lang="en">Built for people with full lives, not full gym schedules.</span>
+            <span data-lang="id">Dibuat untuk yang hidupnya padat, bukan jadwal gym-nya.</span>
           </p>
         </header>
 
@@ -218,11 +222,6 @@
               <span data-lang="en">A refreshing stick-pack for movement days, warm weather, and active hydration. Clean taste, easy mixing, no stimulant.</span>
               <span data-lang="id">Stick-pack yang menyegarkan untuk hari aktif, cuaca panas, dan hidrasi. Rasa bersih, mudah larut, tanpa stimulan.</span>
             </p>
-            <ul class="card-list">
-              <li><span data-lang="en">Gym, run, padel, workday movement</span><span data-lang="id">Gym, lari, padel, gerak harian</span></li>
-              <li><span data-lang="en">Validating taste, solubility, low-grit</span><span data-lang="id">Memvalidasi rasa, kelarutan, tekstur halus</span></li>
-              <li><span data-lang="en">Use 3–5× per week?</span><span data-lang="id">Pakai 3–5× seminggu?</span></li>
-            </ul>
           </article>
 
           <article class="mvp-card">
@@ -248,16 +247,11 @@
               </div>
             </div>
             <p class="card-tag"><span data-lang="en">Concept B</span><span data-lang="id">Konsep B</span></p>
-            <h3><span data-lang="en">Creatine honey gummy</span><span data-lang="id">Gummy creatine madu</span></h3>
+            <h3><span data-lang="en">Creatine honey gummy · Honey Lemon</span><span data-lang="id">Gummy creatine madu</span></h3>
             <p class="card-desc">
               <span data-lang="en">A daily format for people who want creatine without shaker bottles, powder mess, or complicated routines.</span>
               <span data-lang="id">Format harian untuk yang mau creatine tanpa shaker, bubuk berantakan, atau rutinitas ribet.</span>
             </p>
-            <ul class="card-list">
-              <li><span data-lang="en">Built for habit formation</span><span data-lang="id">Untuk membangun kebiasaan</span></li>
-              <li><span data-lang="en">Validating dose credibility, adult texture</span><span data-lang="id">Memvalidasi dosis & tekstur dewasa</span></li>
-              <li><span data-lang="en">Take daily for 28 days?</span><span data-lang="id">Pakai setiap hari 28 hari?</span></li>
-            </ul>
           </article>
         </div>
 
@@ -290,34 +284,22 @@
           <p class="sec-sub"><span data-lang="en">7 short tap-based questions. Real influence on a real product.</span><span data-lang="id">7 pertanyaan singkat. Pengaruh nyata ke produk nyata.</span></p>
         </header>
 
-        <div class="survey-embed">
-          <iframe
-            src="/creatine-fit-quiz"
-            title="Creatine Fit Survey"
-            loading="lazy"
-          ></iframe>
+        <div class="survey-mobile-launch">
+          <p class="survey-mobile-kicker">
+            <span data-lang="en">Quick survey</span><span data-lang="id">Survei singkat</span>
+          </p>
+          <h3><span data-lang="en">Your input matters.</span><span data-lang="id">Masukanmu penting.</span></h3>
+          <p>
+            <span data-lang="en">A focused 2-minute survey to help shape the first Daily Stack Lab product.</span>
+            <span data-lang="id">Survei fokus 2 menit untuk membantu membentuk produk pertama Daily Stack Lab.</span>
+          </p>
+          <a class="btn btn-primary btn-lg" href="/creatine-fit-quiz" data-analytics="mobile_survey_launch">
+            <span data-lang="en">Start survey</span><span data-lang="id">Mulai survei</span>
+          </a>
         </div>
       </section>
 
-      <!-- ======== 5. BUILD IN PUBLIC ======== -->
-      <section class="section sec-founder" id="build-in-public">
-        <div class="founder">
-          <div class="founder-photo">
-            <span class="photo-initials">IR</span>
-            <span class="photo-label">Placeholder portrait</span>
-          </div>
-          <div class="founder-text">
-            <p class="eyebrow"><span data-lang="en">Build in public</span><span data-lang="id">Dibangun terbuka</span></p>
-            <p class="founder-quote">
-              <span data-lang="en">"As an active dad, runner, padel player, and founder, I know how hard it is to stay consistent. The best supplement is the one people can actually repeat."</span>
-              <span data-lang="id">"Sebagai ayah aktif, pelari, pemain padel, dan founder, saya tahu sulitnya menjaga konsistensi. Suplemen terbaik adalah yang bisa benar-benar dilakukan."</span>
-            </p>
-            <p class="founder-sig">— Irsan</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======== 6. FAQ ======== -->
+      <!-- ======== 5. FAQ ======== -->
       <section class="section sec-faq" id="faq">
         <header class="sec-head">
           <p class="eyebrow">FAQ</p>
@@ -377,7 +359,7 @@
         </div>
         <div class="footer-meta">
           <p><span data-lang="en">Early-stage validation. Not a finished product. Not medical advice.</span><span data-lang="id">Validasi tahap awal. Bukan produk jadi. Bukan saran medis.</span></p>
-          <p><a href="mailto:aria.irsan@gmail.com">aria.irsan@gmail.com</a> · <a href="/admin.html">Lead dashboard</a></p>
+          <p><a href="mailto:aria.irsan@gmail.com">aria.irsan@gmail.com</a></p>
         </div>
       </div>
     </footer>

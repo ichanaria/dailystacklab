@@ -108,7 +108,88 @@
   document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(syncChoiceState);
 
   // =========================================================
-  // 4. WHY CREATINE CAROUSEL
+  // 4. PRODUCT CONCEPT CAROUSEL
+  // =========================================================
+  const conceptCarousel = document.querySelector("[data-concept-carousel]");
+  if (conceptCarousel) {
+    const conceptSlides = Array.prototype.slice.call(document.querySelectorAll("[data-concept-slide]"));
+    const conceptDots = Array.prototype.slice.call(document.querySelectorAll("[data-concept-dot]"));
+    const conceptNext = document.querySelector("[data-concept-next]");
+    let conceptIndex = 0;
+    let conceptTimer = null;
+
+    function showConcept(index, source) {
+      if (!conceptSlides.length) return;
+      conceptIndex = (index + conceptSlides.length) % conceptSlides.length;
+      conceptSlides.forEach(function (slide, i) {
+        const diff = (i - conceptIndex + conceptSlides.length) % conceptSlides.length;
+        slide.classList.toggle("is-active", diff === 0);
+        slide.classList.toggle("is-next", diff === 1);
+        slide.classList.toggle("is-prev", diff === conceptSlides.length - 1);
+        slide.setAttribute("aria-hidden", diff === 0 ? "false" : "true");
+      });
+      conceptDots.forEach(function (dot, i) {
+        dot.classList.toggle("is-active", i === conceptIndex);
+      });
+      if (source) track("product_concept_slide", { index: conceptIndex + 1, source: source });
+    }
+
+    function nextConcept(source) {
+      showConcept(conceptIndex + 1, source);
+    }
+
+    function restartConceptAuto() {
+      if (conceptTimer) window.clearInterval(conceptTimer);
+      conceptTimer = window.setInterval(function () {
+        nextConcept("auto");
+      }, 3600);
+    }
+
+    if (conceptNext) {
+      conceptNext.addEventListener("click", function () {
+        nextConcept("manual_next");
+        restartConceptAuto();
+      });
+    }
+
+    conceptCarousel.addEventListener("mouseenter", function () {
+      if (conceptTimer) window.clearInterval(conceptTimer);
+    });
+    conceptCarousel.addEventListener("mouseleave", restartConceptAuto);
+    conceptCarousel.addEventListener("focusin", function () {
+      if (conceptTimer) window.clearInterval(conceptTimer);
+    });
+    conceptCarousel.addEventListener("focusout", restartConceptAuto);
+
+    showConcept(0);
+    restartConceptAuto();
+  }
+
+  // =========================================================
+  // 5. SCROLL REVEAL WINDOWS
+  // =========================================================
+  const revealWindows = Array.prototype.slice.call(document.querySelectorAll(".js-reveal"));
+  if (revealWindows.length) {
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -6% 0px", threshold: 0.06 }
+      );
+      revealWindows.forEach(function (el) { revealObserver.observe(el); });
+    } else {
+      revealWindows.forEach(function (el) { el.classList.add("is-visible"); });
+    }
+  }
+
+  // =========================================================
+  // 6. WHY CREATINE CAROUSEL
   // =========================================================
   const eduCarousel = document.querySelector("[data-edu-carousel]");
   if (eduCarousel) {
@@ -233,7 +314,47 @@
   }
 
   // =========================================================
-  // 7. INLINE SURVEY FALLBACK
+  // 7. EMBEDDED SURVEY HEIGHT
+  // =========================================================
+  const surveyFrame = document.getElementById("surveyFrame");
+  if (surveyFrame) {
+    const syncSurveyFrameHeight = function () {
+      const doc = surveyFrame.contentDocument;
+      if (!doc || !doc.body) return;
+
+      const nextHeight = Math.max(
+        560,
+        Math.min(Math.ceil(Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight)), 9000),
+      );
+      surveyFrame.style.setProperty("--survey-frame-height", nextHeight + "px");
+    };
+
+    window.addEventListener("message", function (event) {
+      if (event.origin !== window.location.origin) return;
+      const data = event.data || {};
+      if (data.type !== "creatineQuizHeight") return;
+
+      const nextHeight = Math.max(560, Math.min(Number(data.height) || 0, 9000));
+      surveyFrame.style.setProperty("--survey-frame-height", nextHeight + "px");
+
+      if (mobileCta) {
+        mobileCta.classList.toggle("is-visible", !data.inReport && mobileCta.classList.contains("is-visible"));
+      }
+    });
+
+    surveyFrame.addEventListener("load", syncSurveyFrameHeight);
+    window.addEventListener("resize", syncSurveyFrameHeight, { passive: true });
+
+    let syncAttempts = 0;
+    const syncTimer = window.setInterval(function () {
+      syncSurveyFrameHeight();
+      syncAttempts += 1;
+      if (syncAttempts >= 12) window.clearInterval(syncTimer);
+    }, 250);
+  }
+
+  // =========================================================
+  // 8. INLINE SURVEY FALLBACK
   // =========================================================
   const form = document.getElementById("surveyForm");
   if (!form) return;

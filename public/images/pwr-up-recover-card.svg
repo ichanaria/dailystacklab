@@ -1,0 +1,79 @@
+<svg width="340" viewBox="0 0 380 524" role="img" xmlns="http://www.w3.org/2000/svg" style="">
+  <title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">PWR UP Recover card</title>
+  <desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Night recovery stack card with deep indigo to purple gradient</desc>
+
+  <defs>
+    <linearGradient id="recoverGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8B7ED8"/>
+      <stop offset="55%" stop-color="#5B4BAF"/>
+      <stop offset="100%" stop-color="#2D1B6E"/>
+    </linearGradient>
+    <linearGradient id="recoverShine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="recoverFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#120B38" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#120B38" stop-opacity="0.65"/>
+    </linearGradient>
+    <clipPath id="recoverCard">
+      <rect x="20" y="16" width="340" height="492" rx="24"/>
+    </clipPath>
+  <mask id="imagine-text-gaps-pgedxg" maskUnits="userSpaceOnUse"><rect x="0" y="0" width="458" height="550" fill="white"/><rect x="48" y="56" width="57.2265625" height="16.5" fill="black" rx="2"/><rect x="44" y="89.5" width="278.97265625" height="87" fill="black" rx="2"/><rect x="44" y="186" width="184.296875" height="19" fill="black" rx="2"/><rect x="44" y="226" width="179.7578125" height="93.5" fill="black" rx="2"/><rect x="62.23046875" y="360" width="57.5390625" height="16.5" fill="black" rx="2"/><rect x="157.8515625" y="360" width="34.296875" height="16.5" fill="black" rx="2"/><rect x="221.453125" y="360" width="99.09375" height="16.5" fill="black" rx="2"/><rect x="44" y="412" width="40.609375" height="16.5" fill="black" rx="2"/><rect x="44" y="430" width="179.8984375" height="19" fill="black" rx="2"/><rect x="76" y="472" width="94.171875" height="16.5" fill="black" rx="2"/></mask></defs>
+
+  <rect x="20" y="16" width="340" height="492" rx="24" fill="url(#recoverGrad)" style="stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <rect x="20" y="16" width="340" height="240" fill="url(#recoverShine)" clip-path="url(#recoverCard)" style="stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Star dots for night feel -->
+  <circle cx="300" cy="50" r="1.5" fill="#ffffff" opacity="0.6" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="320" cy="80" r="1" fill="#ffffff" opacity="0.4" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.4;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="280" cy="90" r="1" fill="#ffffff" opacity="0.5" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="340" cy="45" r="1" fill="#ffffff" opacity="0.35" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.35;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="310" cy="110" r="1.5" fill="#ffffff" opacity="0.3" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.3;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="350" cy="70" r="1" fill="#ffffff" opacity="0.45" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.45;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="265" cy="60" r="1" fill="#ffffff" opacity="0.3" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.3;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <ellipse cx="318" cy="72" rx="130" ry="110" fill="#ffffff" opacity="0.05" clip-path="url(#recoverCard)" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.05;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <ellipse cx="60" cy="440" rx="140" ry="100" fill="#ffffff" opacity="0.04" clip-path="url(#recoverCard)" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.04;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <rect x="20" y="340" width="340" height="168" fill="url(#recoverFade)" clip-path="url(#recoverCard)" style="stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- NIGHT label -->
+  <text x="52" y="68" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="700" letter-spacing="3" fill="#C4B8F0" opacity="0.7" style="fill:rgb(196, 184, 240);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:sans-serif;font-size:11px;font-weight:700;text-anchor:start;dominant-baseline:auto">NIGHT</text>
+
+  <!-- Recover wordmark -->
+  <text x="48" y="158" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="76" font-weight="800" fill="#F7F1E8" letter-spacing="-2" opacity="0.95" style="fill:rgb(247, 241, 232);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.95;font-family:sans-serif;font-size:76px;font-weight:800;text-anchor:start;dominant-baseline:auto">Recover</text>
+
+  <line x1="48" y1="174" x2="180" y2="174" stroke="#C4B8F0" stroke-width="1.5" stroke-linecap="round" opacity="0.4" mask="url(#imagine-text-gaps-pgedxg)" style="fill:rgb(0, 0, 0);stroke:rgb(196, 184, 240);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:round;stroke-linejoin:miter;opacity:0.4;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Subtitle -->
+  <text x="48" y="200" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="500" fill="#C4B8F0" opacity="0.85" style="fill:rgb(196, 184, 240);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.85;font-family:sans-serif;font-size:13px;font-weight:500;text-anchor:start;dominant-baseline:auto">Recovery stack · Coming soon</text>
+
+  <!-- Description -->
+  <text x="48" y="242" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="400" fill="#F7F1E8" opacity="0.88" style="fill:rgb(247, 241, 232);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.88;font-family:sans-serif;font-size:15px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <tspan x="48" dy="0" style="fill:rgb(247, 241, 232);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:15px;font-weight:400;text-anchor:start;dominant-baseline:auto">Wind down with purpose.</tspan>
+    <tspan x="48" dy="24" style="fill:rgb(247, 241, 232);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:15px;font-weight:400;text-anchor:start;dominant-baseline:auto">Help your body repair so</tspan>
+    <tspan x="48" dy="24" style="fill:rgb(247, 241, 232);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:15px;font-weight:400;text-anchor:start;dominant-baseline:auto">tomorrow you can</tspan>
+    <tspan x="48" dy="24" style="fill:rgb(247, 241, 232);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:15px;font-weight:400;text-anchor:start;dominant-baseline:auto">go again.</tspan>
+  </text>
+
+  <!-- Pills -->
+  <rect x="48" y="354" width="86" height="28" rx="14" fill="#ffffff" opacity="0.14" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.14;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="91" y="372" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#C4B8F0" text-anchor="middle" style="fill:rgb(196, 184, 240);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:11px;font-weight:700;text-anchor:middle;dominant-baseline:auto">Recovery</text>
+
+  <rect x="142" y="354" width="66" height="28" rx="14" fill="#ffffff" opacity="0.14" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.14;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="175" y="372" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#C4B8F0" text-anchor="middle" style="fill:rgb(196, 184, 240);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:11px;font-weight:700;text-anchor:middle;dominant-baseline:auto">Halal</text>
+
+  <rect x="216" y="354" width="110" height="28" rx="14" fill="#ffffff" opacity="0.14" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.14;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="271" y="372" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#C4B8F0" text-anchor="middle" style="fill:rgb(196, 184, 240);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:11px;font-weight:700;text-anchor:middle;dominant-baseline:auto">Chamomile Berry</text>
+
+  <line x1="48" y1="400" x2="332" y2="400" stroke="#ffffff" stroke-width="0.5" opacity="0.15" style="fill:rgb(0, 0, 0);stroke:rgb(255, 255, 255);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.15;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <text x="48" y="424" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#ffffff" opacity="0.5" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">Timing</text>
+  <text x="48" y="444" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#ffffff" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:13px;font-weight:700;text-anchor:start;dominant-baseline:auto">Evening · before wind down</text>
+
+  <!-- Coming soon badge -->
+  <rect x="48" y="462" width="148" height="36" rx="12" fill="#120B38" opacity="0.75" style="fill:rgb(18, 11, 56);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.75;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="68" cy="480" r="4" fill="#8B7ED8" style="fill:rgb(139, 126, 216);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="80" y="484" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#F7F1E8" letter-spacing="0.5" style="fill:rgb(247, 241, 232);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:11px;font-weight:700;text-anchor:start;dominant-baseline:auto">COMING SOON</text>
+
+</svg>

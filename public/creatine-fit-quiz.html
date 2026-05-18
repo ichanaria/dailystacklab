@@ -176,6 +176,21 @@ input:focus, select:focus, textarea:focus {
   font-family: inherit;
 }
 
+.chip-icon {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
 .chip:hover { border-color: #F4B23C; }
 
 .chip.on {
@@ -777,6 +792,13 @@ input[type=range]::-moz-range-thumb {
   margin-bottom: 7px;
 }
 
+.section-note {
+  font-size: 11px;
+  color: #7B7165;
+  line-height: 1.45;
+  margin: -2px 0 9px;
+}
+
 .report-title {
   font-size: 17px;
   font-weight: 700;
@@ -857,16 +879,17 @@ input[type=range]::-moz-range-thumb {
 }
 
 .lane-score {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #F4B23C;
-  color: #1F2426;
+  border-radius: 100px;
+  background: #FAEEDA;
+  color: #7A4708;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 9px;
   font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 8px;
   flex-shrink: 0;
 }
 
@@ -895,13 +918,30 @@ input[type=range]::-moz-range-thumb {
   font-size: 12px;
   color: #1F2426;
   line-height: 1.45;
+  overflow: hidden;
 }
 
 .routine-step strong {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 11px;
   color: #B26A08;
-  margin-bottom: 3px;
+  line-height: 1.25;
+  margin-bottom: 7px;
+}
+
+.routine-step strong:not(.insight-head) {
+  display: block;
+}
+
+.insight-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.insight-copy {
+  display: block;
 }
 
 .sources-list {
@@ -963,10 +1003,119 @@ input[type=range]::-moz-range-thumb {
   margin-bottom: 2px;
 }
 
-.score-bars {
+.score-bars,
+.needs-grid {
   display: grid;
   gap: 8px;
   margin-bottom: 14px;
+}
+
+.need-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(31,36,38,0.08);
+  border-radius: 12px;
+  padding: 11px 12px;
+  box-shadow: 0 8px 22px rgba(31,36,38,0.035);
+}
+
+.need-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.need-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1F2426;
+}
+
+.need-level {
+  background: #FAEEDA;
+  color: #7A4708;
+  border-radius: 100px;
+  padding: 3px 7px;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.need-copy {
+  display: block;
+  font-size: 11px;
+  color: #6B6760;
+  line-height: 1.45;
+}
+
+.need-meter {
+  height: 6px;
+  background: #F2E9DB;
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 8px 0 7px;
+}
+
+.need-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #F4B23C, #E88936);
+  border-radius: inherit;
+}
+
+.share-panel {
+  background: #1F2426;
+  color: #FFFFFF;
+  border-radius: 14px;
+  padding: 13px;
+  margin-top: 14px;
+}
+
+.share-title {
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.share-copy {
+  font-size: 11px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 10px;
+}
+
+.share-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.share-btn {
+  border: none;
+  border-radius: 100px;
+  padding: 10px 11px;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.share-btn.primary {
+  background: #F4B23C;
+  color: #1F2426;
+}
+
+.share-btn.secondary {
+  background: rgba(255,255,255,0.1);
+  color: #FFFFFF;
+}
+
+.share-status {
+  font-size: 10px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 8px;
+  min-height: 14px;
 }
 
 .score-line {
@@ -1000,16 +1149,19 @@ input[type=range]::-moz-range-thumb {
 }
 
 .mini-icon {
-  width: 24px;
-  height: 24px;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
   border-radius: 50%;
   background: #FAEEDA;
   color: #633806;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 15px;
+  line-height: 1;
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 .footnotes {
@@ -1115,16 +1267,16 @@ input[type=range]::-moz-range-thumb {
       <div class="s-sub">Pick all that apply. Creatine can support repeated effort, strength, recovery, and demanding workdays.</div>
 
       <div class="chip-wrap" id="actWrap">
-        <div class="chip" onclick="tog(this)">&#127939; Running</div>
-        <div class="chip" onclick="tog(this)">&#127947; Gym / Weights</div>
-        <div class="chip" onclick="tog(this)">&#128692; Cycling</div>
-        <div class="chip" onclick="tog(this)">&#127934; Padel / Tennis</div>
-        <div class="chip" onclick="tog(this)">&#127944; Swimming</div>
-        <div class="chip" onclick="tog(this)">&#129340; Yoga / Pilates</div>
-        <div class="chip" onclick="tog(this)">&#9889; HIIT / CrossFit</div>
-        <div class="chip" onclick="tog(this)">&#9917; Football / Futsal</div>
-        <div class="chip" onclick="tog(this)">&#128507; Hiking / Outdoor</div>
-        <div class="chip" onclick="tog(this)">&#128188; Desk job / Light activity</div>
+        <div class="chip" data-value="Running" onclick="tog(this)"><span class="chip-icon">🏃</span> Running</div>
+        <div class="chip" data-value="Gym / Weights" onclick="tog(this)"><span class="chip-icon">🏋️</span> Gym / Weights</div>
+        <div class="chip" data-value="Cycling" onclick="tog(this)"><span class="chip-icon">🚴</span> Cycling</div>
+        <div class="chip" data-value="Padel / Tennis" onclick="tog(this)"><span class="chip-icon">🎾</span> Padel / Tennis</div>
+        <div class="chip" data-value="Swimming" onclick="tog(this)"><span class="chip-icon">🏊</span> Swimming</div>
+        <div class="chip" data-value="Yoga / Pilates" onclick="tog(this)"><span class="chip-icon">🧘</span> Yoga / Pilates</div>
+        <div class="chip" data-value="HIIT / Hyrox / CrossFit" onclick="tog(this)"><span class="chip-icon">⚡</span> HIIT / CrossFit / Hyrox</div>
+        <div class="chip" data-value="Football / Futsal" onclick="tog(this)"><span class="chip-icon">⚽</span> Football / Futsal</div>
+        <div class="chip" data-value="Hiking / Outdoor" onclick="tog(this)"><span class="chip-icon">⛰️</span> Hiking / Outdoor</div>
+        <div class="chip" data-value="Desk job / Light activity" onclick="tog(this)"><span class="chip-icon">💼</span> Desk job / Light activity</div>
       </div>
 
       <div class="divider"></div>
@@ -1299,10 +1451,10 @@ input[type=range]::-moz-range-thumb {
 
       <div class="full-report-box">
         <div class="full-report-label">Full report unlocks</div>
-        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">Your top 3 evidence-backed creatine benefit lanes</div></div>
-        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">A daily rhythm plan for when and how to take it</div></div>
-        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">Myths vs facts tailored to your concerns</div></div>
-        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">A personalized infographic with study citations</div></div>
+        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">Your practical Move, Focus, and Recovery needs</div></div>
+        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">Personal insight cards based on your activity pattern</div></div>
+        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">Straight answers to the concerns that matter to you</div></div>
+        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">Clickable research notes behind the report</div></div>
       </div>
 
       <div class="lock-box">
@@ -1338,7 +1490,7 @@ input[type=range]::-moz-range-thumb {
             </select>
           </div>
           <div class="field">
-            <label>Your monthly supplement budget</label>
+            <label>Your average current monthly supplement budget</label>
             <div class="budget-box">
               <div class="budget-value" id="budgetVal">Rp 300.000</div>
               <input type="range" min="100000" max="1000000" step="50000" value="300000" id="iBudget" oninput="updBudget(this.value)"/>
@@ -1376,7 +1528,7 @@ input[type=range]::-moz-range-thumb {
         </div>
 
         <button class="cta-gold" onclick="handleCTA('science')">
-          Save or print my infographic
+          Download or share my report
         </button>
         <button class="cta-outline" onclick="handleCTA('product')">
           Retake the quiz
@@ -1400,12 +1552,27 @@ input[type=range]::-moz-range-thumb {
 */
 
 var D = {
+  sessionId: getQuizSessionId(),
   name: '', age: '', gender: '', height: '', weight: '',
   freq: 3, activities: [], goals: [], concerns: [], experience: '', format: '', email: '',
   whatsapp: '', productInterest: '', sampleInterest: '', monthlyBudget: 300000, notes: ''
 };
 
 var lastAnalysis = null;
+var previewCaptured = false;
+
+function getQuizSessionId() {
+  try {
+    var key = 'dsl_quiz_session_id';
+    var existing = sessionStorage.getItem(key);
+    if (existing) return existing;
+    var value = 'quiz_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+    sessionStorage.setItem(key, value);
+    return value;
+  } catch (_) {
+    return 'quiz_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+  }
+}
 
 var stepLabels = [
   'About you',
@@ -1423,8 +1590,13 @@ var lanes = {
   },
   endurance: {
     title: 'Repeated effort & fatigue resistance',
-    short: 'Most relevant for runners, padel players, HIIT, cycling, and sports with surges or sprints.',
+    short: 'Most relevant for runners, cyclists, swimmers, and people who repeat harder efforts across a training week.',
     color: 'green'
+  },
+  stopStart: {
+    title: 'Stop-start sport support',
+    short: 'Most relevant for padel, tennis, futsal, HIIT, and Hyrox-style training with repeated short hard efforts.',
+    color: 'amber'
   },
   cognitive: {
     title: 'Focus & brain energy',
@@ -1484,6 +1656,36 @@ var evidence = {
       takeaway: 'Creatine was studied in repeated treadmill sprinting, a useful match for sports with stop-start efforts.',
       source: 'Research database: Creatine & Endurance / Fatigue Resistance',
       url: 'https://www.mdpi.com/2072-6643/14/6/1140'
+    },
+    {
+      citation: 'Zagatto et al., 2019, Frontiers in Physiology',
+      title: 'Creatine and supramaximal running energy contribution',
+      takeaway: 'Useful for running nuance: relevant to short hard efforts, not a promise of better long-distance pace.',
+      source: 'Research database: Creatine & Endurance / Fatigue Resistance',
+      url: 'https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2019.00352/full'
+    }
+  ],
+  stopStart: [
+    {
+      citation: 'Glaister & Rhodes, 2022, IJSNEM',
+      title: 'Short-term creatine and repeated sprint ability',
+      takeaway: 'A systematic review and meta-analysis for repeated sprint ability, relevant to padel, futsal, HIIT, and Hyrox-style sessions.',
+      source: 'Research database: Stop-start sport / hybrid conditioning',
+      url: 'https://explore.openaire.eu/search/publication?pid=10.1123%2Fijsnem.2022-0072'
+    },
+    {
+      citation: 'Azevedo et al., 2019, Nutrition',
+      title: 'Creatine and impact control in HIIT',
+      takeaway: 'A small running-based HIIT study; useful for high-impact interval context without overclaiming injury prevention.',
+      source: 'Research database: Stop-start sport / hybrid conditioning',
+      url: 'https://pubmed.ncbi.nlm.nih.gov/30708260/'
+    },
+    {
+      citation: 'Toro-Roman et al., 2023, Nutrients',
+      title: 'Diet and supplement use in padel players',
+      takeaway: 'Useful for padel relevance and supplement behavior, not proof of direct padel performance improvement.',
+      source: 'Research database: Stop-start sport / hybrid conditioning',
+      url: 'https://www.mdpi.com/2072-6643/15/16/3633'
     }
   ],
   cognitive: [
@@ -1569,9 +1771,10 @@ var evidence = {
 };
 
 var activityLaneMap = [
-  { match: ['gym', 'weights', 'hiit', 'crossfit'], lane: 'strength', points: 3 },
+  { match: ['gym', 'weights', 'hiit', 'hyrox', 'crossfit'], lane: 'strength', points: 3 },
   { match: ['running', 'cycling', 'padel', 'tennis', 'football', 'futsal', 'swimming'], lane: 'endurance', points: 3 },
-  { match: ['padel', 'tennis', 'hiit', 'crossfit', 'football', 'futsal'], lane: 'recovery', points: 1 },
+  { match: ['padel', 'tennis', 'hiit', 'hyrox', 'crossfit', 'football', 'futsal'], lane: 'stopStart', points: 4 },
+  { match: ['padel', 'tennis', 'hiit', 'hyrox', 'crossfit', 'football', 'futsal'], lane: 'recovery', points: 1 },
   { match: ['yoga', 'pilates', 'hiking', 'outdoor'], lane: 'recovery', points: 2 },
   { match: ['desk job', 'light activity'], lane: 'cognitive', points: 3 },
   { match: ['yoga', 'pilates', 'hiking', 'outdoor'], lane: 'aging', points: 1 }
@@ -1631,7 +1834,7 @@ function go(step) {
   } else if (step === 1) {
     var acts = document.querySelectorAll('#actWrap .chip.on');
     if (!acts.length) { showErr('e1', 'Please select at least one activity to continue.'); return; }
-    D.activities = Array.from(acts).map(function(c) { return c.textContent.trim(); });
+    D.activities = Array.from(acts).map(function(c) { return c.getAttribute('data-value') || c.textContent.trim(); });
     D.freq = parseInt(document.getElementById('freqR').value, 10);
     setStep(2);
 
@@ -1651,6 +1854,7 @@ function go(step) {
     D.concerns = Array.from(concs).map(function(c) { return c.querySelector('.conc-lbl').textContent.trim(); });
     buildPreview();
     setStep(4);
+    capturePreviewLead();
   }
 }
 
@@ -1697,7 +1901,8 @@ async function submitEmail() {
      - Meta Pixel / TikTok Pixel / GA4 form_submit event
   ──────────────────────────────────────────────────────── */
   console.log('Creatine quiz submission:', { profile: D, analysis: lastAnalysis });
-  saveLead(D, lastAnalysis);
+  D.consent = true;
+  await saveLead(D, lastAnalysis, 'email_unlocked');
 
   // Hide all steps
   for (var i = 0; i <= 4; i++) {
@@ -1742,13 +1947,25 @@ async function submitEmail() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function saveLead(profile, analysis) {
-  if (window.location.protocol === 'file:') return;
-  fetch('/api/leads', {
+function capturePreviewLead() {
+  if (previewCaptured) return;
+  previewCaptured = true;
+  lastAnalysis = lastAnalysis || analyzeProfile();
+  saveLead(D, lastAnalysis, 'preview_reached').catch(function(err) {
+    previewCaptured = false;
+    console.warn('Preview capture unavailable:', err);
+  });
+}
+
+function saveLead(profile, analysis, captureStage) {
+  if (window.location.protocol === 'file:') return Promise.resolve();
+  return fetch('/api/leads', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       profile: profile,
+      consent: captureStage === 'email_unlocked',
+      captureStage: captureStage || 'email_unlocked',
       analysis: {
         profileType: analysis.profileType,
         topLanes: analysis.topLanes,
@@ -1756,9 +1973,12 @@ function saveLead(profile, analysis) {
       },
       source: 'creatine_fit_quiz'
     })
-  }).catch(function(err) {
-    console.warn('Lead save unavailable:', err);
-  });
+ }).then(function(res) {
+  if (!res.ok) throw new Error('Lead save failed with status ' + res.status);
+  return res.json();
+}).catch(function(err) {
+  console.warn('Lead save unavailable:', err);
+});
 }
 
 async function generateAIReport() {
@@ -1793,19 +2013,21 @@ function renderGeneratedReport(report, diagnosis) {
         '<div class="info-logo">Result</div>' +
       '</div>' +
       '<div class="context-strip">' + buildContextStrip(getBodyMetrics()) + '</div>' +
-      '<div class="report-kicker">Fit score</div>' +
-      '<div class="score-bars">' + buildScoreBars({ Move: scores.Move || scores.move || 70, Focus: scores.Focus || scores.focus || 60, Recover: scores.Recover || scores.recover || 60 }) + '</div>' +
+      '<div class="report-kicker">Your needs</div>' +
+      '<div class="section-note">Where creatine looks most relevant based on your routine, goals, and selected research.</div>' +
+      '<div class="needs-grid">' + buildNeedCards({ Move: scores.Move || scores.move || 70, Focus: scores.Focus || scores.focus || 60, Recover: scores.Recover || scores.recover || 60 }) + '</div>' +
       '<div class="report-kicker">Personal insights</div>' +
       '<div class="routine-grid">' + insights.map(renderInsight).join('') + '</div>' +
       '<div class="report-kicker" style="margin-top:14px">Simple routine</div>' +
       '<div class="routine-grid">' + routine.map(function(item, index) { return '<div class="routine-step"><strong>' + esc(['Amount','Timing','Habit'][index] || 'Step') + '</strong>' + renderCitedText(item) + '</div>'; }).join('') + '</div>' +
       '<div class="report-kicker" style="margin-top:14px">Selected research basis</div>' +
       '<ul class="sources-list">' + footnotes.map(renderFootnote).join('') + '</ul>' +
+      buildSharePanel(report.profileTitle || diagnosis.profileType || 'Your Creatine Fit') +
     '</div>';
 }
 
 function renderInsight(item) {
-  return '<div class="routine-step"><strong><span class="mini-icon">' + esc(item.icon || 'Note') + '</span> ' + esc(item.title || 'Insight') + '</strong>' + renderCitedText(item.text || '') + '</div>';
+  return '<div class="routine-step"><strong class="insight-head"><span class="mini-icon">' + esc(iconGlyph(item.icon || 'Note')) + '</span><span class="insight-title">' + esc(item.title || 'Insight') + '</span></strong><span class="insight-copy">' + renderCitedText(item.text || '') + '</span></div>';
 }
 
 function renderFootnote(item, index) {
@@ -1852,6 +2074,7 @@ function analyzeProfile() {
   var scores = {
     strength: 1,
     endurance: 1,
+    stopStart: 1,
     cognitive: 1,
     recovery: 1,
     women: 0,
@@ -1875,6 +2098,7 @@ function analyzeProfile() {
   if (D.freq >= 4) {
     scores.recovery += 2;
     scores.endurance += 1;
+    scores.stopStart += 1;
     reasons.push('You train often, so consistency and recovery rhythm matter.');
   } else if (D.freq <= 1) {
     scores.safety += 1;
@@ -1932,6 +2156,7 @@ function addMatches(value, map, scores, reasons, sourceType) {
 
 function inferProfileType(topLanes) {
   var keys = topLanes.map(function(item) { return item.key; }).join('|');
+  if (keys.indexOf('stopStart') > -1 && keys.indexOf('endurance') > -1) return 'The Stop-Start Athlete';
   if (keys.indexOf('strength') > -1 && keys.indexOf('endurance') > -1) return 'The Active Mover';
   if (keys.indexOf('cognitive') > -1 && keys.indexOf('endurance') > -1) return 'The Workday Athlete';
   if (keys.indexOf('women') > -1 && keys.indexOf('strength') > -1) return 'The Active Wellness Builder';
@@ -1942,15 +2167,88 @@ function inferProfileType(topLanes) {
 
 function claimForLane(laneKey) {
   var copy = {
-    strength: 'Your strength angle is about better training quality when the work gets hard, not chasing a bodybuilder look.',
-    endurance: 'Your movement angle is about tired-leg moments: when you still want to move well near the end of a run, rally, or busy training week.',
-    cognitive: 'Your workday matters too. The full report connects training fatigue with long screen time, decisions, and focus.',
-    recovery: 'Your routine needs tomorrow to feel manageable. The full report turns recovery into a simple daily rhythm, not a dramatic promise.',
-    women: 'Your report uses women-specific research so the explanation fits active wellness, not only gym stereotypes.',
-    aging: 'Your long-game angle is practical: useful muscle, confident movement, and routines you can keep over time.',
-    safety: 'Your main blocker may be confidence, not motivation. The full report separates common creatine worries from what research actually supports.'
+    strength: strengthPreview(),
+    endurance: endurancePreview(),
+    stopStart: stopStartPreview(),
+    cognitive: cognitivePreview(),
+    recovery: recoveryPreview(),
+    women: 'The women-specific angle matters because creatine should be explained through active wellness, strength confidence, and daily routine, not borrowed from male gym culture.',
+    aging: 'The long-game angle is simple: keep useful muscle, keep moving confidently, and build routines that still make sense years from now.',
+    safety: safetyPreview()
   };
   return copy[laneKey];
+}
+
+function endurancePreview() {
+  if (hasActivity('running')) {
+    return 'For your runs, creatine is not about easy pace. The more relevant moments are intervals, short climbs, faster finishes, and the next session when your legs are not fully fresh.';
+  }
+  if (hasActivity('cycling') || hasActivity('swimming')) {
+    return 'For endurance work, creatine is not the main fuel. The better fit is the harder parts of training: repeated efforts, pace changes, and sessions that stack up across the week.';
+  }
+  return 'The useful angle is simple: your body is not only doing one type of movement. It needs support for the harder parts of training and the next session after that.';
+}
+
+function stopStartPreview() {
+  if (hasActivity('padel') || hasActivity('tennis')) {
+    return 'For padel or tennis, I would not promise a better smash. The practical angle is what happens between points: quick starts, brakes, turns, and staying useful through rallies.';
+  }
+  if (hasActivity('hyrox') || hasActivity('hiit') || hasActivity('crossfit')) {
+    return 'For hybrid training, the pattern is run, push, pull, breathe, then go again. Creatine fits the repeated short-effort side of that story.';
+  }
+  if (hasActivity('football') || hasActivity('futsal')) {
+    return 'For football or futsal, the useful angle is repeat bursts: sprint, stop, turn, recover briefly, then do it again.';
+  }
+  return 'Your sport is not steady cardio. The useful angle is repeated short efforts, not bodybuilder language.';
+}
+
+function strengthPreview() {
+  if (hasConcern('bulky')) {
+    return 'The strength benefit does not mean creatine decides your body shape. Size changes mostly come from training style, food intake, and time.';
+  }
+  if (hasActivity('gym') || hasActivity('weights')) {
+    return 'For gym work, the useful part is training quality when sets get hard: better repeat effort, not a shortcut or a bodybuilder promise.';
+  }
+  return 'The strength angle is about useful muscle and training quality, not chasing a bigger-body image.';
+}
+
+function cognitivePreview() {
+  if (hasActivity('desk')) {
+    return 'Your workday counts as load too. Long screen time, decisions, and meetings can drain you before training even starts.';
+  }
+  if (hasActivity('padel') || hasActivity('tennis')) {
+    return 'Court sports need attention and reaction, especially when your legs get tired and timing starts to slip.';
+  }
+  return 'The focus angle should stay practical: demanding days and mental fatigue context, not a magic productivity promise.';
+}
+
+function recoveryPreview() {
+  if (D.freq >= 5) {
+    return 'At ' + D.freq + ' sessions a week, tomorrow matters. The goal is not one perfect session; it is feeling ready enough to keep the rhythm.';
+  }
+  if (D.freq >= 3) {
+    return 'With a few sessions each week, recovery is not dramatic. It is the difference between staying consistent and quietly skipping days.';
+  }
+  return 'Recovery here means making the routine easy enough to repeat, even before training becomes intense.';
+}
+
+function safetyPreview() {
+  if (hasConcern('hair loss')) {
+    return 'For hair loss, the useful answer is measured: current evidence does not make it an expected creatine effect, but the report still treats the concern seriously and shows what to watch.';
+  }
+  if (hasConcern('bulky')) {
+    return 'Bulky is not something creatine switches on. Body shape comes mostly from training style, food intake, and consistency over time.';
+  }
+  if (hasConcern('bloated')) {
+    return 'Bloating needs a practical explanation: early water-weight changes can happen, but that is not the same as fat gain.';
+  }
+  if (hasConcern('kidney') || hasConcern('heart')) {
+    return 'Kidney and heart questions should be answered clearly: healthy-adult safety evidence is useful, while medical conditions deserve clinician advice.';
+  }
+  if (hasConcern('dose')) {
+    return 'Dose does not need to be complicated first. A small daily habit is usually more realistic than loading, cycling, and changing timing every week.';
+  }
+  return 'The safety section should give straight answers, not scare tactics: what is supported, what is overclaimed, and when to ask a professional.';
 }
 
 function buildFullReport(analysis) {
@@ -1958,19 +2256,18 @@ function buildFullReport(analysis) {
   var firstName = esc(D.name);
   var metrics = getBodyMetrics();
   var citations = createCitationManager();
-  var laneCards = topLanes.map(function(lane) {
-    var score = Math.min(99, 62 + lane.score * 7);
+  var laneCards = topLanes.map(function(lane, index) {
     return '<div class="lane-card">' +
-      '<div class="lane-top"><div class="lane-score">' + score + '</div><div><div class="lane-title">' + esc(lanes[lane.key].title) + citations.mark(lane.key) + '</div></div></div>' +
+      '<div class="lane-top"><div class="lane-score">' + esc(laneRankLabel(index)) + '</div><div><div class="lane-title">' + esc(lanes[lane.key].title) + citations.mark(lane.key) + '</div></div></div>' +
       '<div class="lane-body">' + esc(laneInsight(lane.key, metrics)) + '</div>' +
       '</div>';
   }).join('');
-  var scoreBars = buildScoreBars(getShareScores(analysis));
+  var needCards = buildNeedCards(getShareScores(analysis));
 
   return '<div class="report-card with-icon">' +
     '<div class="summary-icon">You</div><div><div class="report-kicker">Personalized result</div>' +
-    '<div class="report-title">' + firstName + ', here is what your routine is telling me.</div>' +
-    '<div class="report-copy">I read your answers as a lifestyle pattern: what your week asks from your body, what drains your focus, what concerns could block the habit, and what format you can realistically repeat.</div></div>' +
+    '<div class="report-title">' + buildLocalHeadline(firstName) + '</div>' +
+    '<div class="report-copy">This is built around the real pressure points in your week: the activity load, the focus load, the recovery rhythm, and the kind of routine you can actually repeat.</div></div>' +
     '</div>' +
     '<div class="infographic" id="infographicCard">' +
       '<div class="info-head">' +
@@ -1980,9 +2277,10 @@ function buildFullReport(analysis) {
       '</div>' +
       '<div class="context-strip">' + buildContextStrip(metrics) + '</div>' +
       '<div class="summary-card"><div class="report-kicker">Summary of you</div><p>' + buildSummaryOfYou(analysis, metrics) + '</p></div>' +
-      '<div class="report-kicker">Fit score</div>' +
-      '<div class="score-bars">' + scoreBars + '</div>' +
-      '<div class="report-kicker">Your top benefit lanes</div>' +
+      '<div class="report-kicker">Your needs</div>' +
+      '<div class="section-note">Where creatine looks most relevant based on your routine, goals, and selected research.</div>' +
+      '<div class="needs-grid">' + needCards + '</div>' +
+      '<div class="report-kicker">Research-backed benefit areas</div>' +
       '<div class="lane-grid">' + laneCards + '</div>' +
       '<div class="report-kicker" style="margin-top:14px">Personal insights</div>' +
       '<div class="routine-grid">' + buildPersonalInsights(analysis, metrics, citations) + '</div>' +
@@ -1991,7 +2289,12 @@ function buildFullReport(analysis) {
       '<div class="report-kicker" style="margin-top:14px">Selected research basis</div>' +
       '<ul class="sources-list">' + citations.basisHtml() + '</ul>' +
       '<div class="footnotes">' + citations.footnotesHtml() + '</div>' +
+      buildSharePanel('Your Creatine Fit: ' + analysis.profileType) +
     '</div>';
+}
+
+function laneRankLabel(index) {
+  return index === 0 ? 'Primary' : index === 1 ? 'Also' : 'Support';
 }
 
 function getBodyMetrics() {
@@ -2023,17 +2326,70 @@ function buildContextStrip(metrics) {
 
 function buildSummaryOfYou(analysis, metrics) {
   var concernLine = D.concerns.length
-    ? ' The report also answers the worries that could stop the habit before it starts.'
+    ? ' The report also keeps the myth-check practical, so confidence comes before hype.'
     : '';
-  return esc('Hi ' + D.name + ', your routine is not extreme, but it asks a lot from a normal week. You are balancing ' + activitySummary().toLowerCase() + ', ' + trainingLoadLabel() + ', and goals like ' + goalSummary().toLowerCase() + '. The best creatine story for you is not size. It is showing up well again: for movement, focus, and the next session.' + concernLine);
+  return esc('Hi ' + D.name + ', your week mixes ' + activitySummary().toLowerCase() + ' with a ' + trainingLoadLabel() + '. Creatine is not the whole plan; it is a small daily support for the harder parts: moving well, staying sharp, and coming back ready enough for the next session.' + concernLine);
+}
+
+function buildLocalHeadline(firstName) {
+  if (hasActivity('padel') || hasActivity('tennis')) return firstName + ', your creatine story is more rally-to-rally than bodybuilder.';
+  if (hasActivity('hyrox') || hasActivity('hiit') || hasActivity('crossfit')) return firstName + ', your creatine story is about going again after the hard part starts.';
+  if (hasActivity('running')) return firstName + ', creatine fits the hard parts of your running week, not the easy miles.';
+  if (hasActivity('desk')) return firstName + ', your report connects movement support with the workday load around it.';
+  return firstName + ', creatine fits your routine more like daily support than a bodybuilding shortcut.';
 }
 
 function getShareScores(analysis) {
   return {
-    Move: Math.min(96, 54 + (analysis.scores.strength + analysis.scores.endurance) * 4 + D.freq * 2),
+    Move: Math.min(96, 54 + (analysis.scores.strength + analysis.scores.endurance + analysis.scores.stopStart) * 3 + D.freq * 2),
     Focus: Math.min(94, 48 + analysis.scores.cognitive * 7 + (hasActivity('desk') ? 8 : 0)),
     Recover: Math.min(92, 48 + analysis.scores.recovery * 7 + (D.freq >= 4 ? 8 : 0))
   };
+}
+
+function buildNeedCards(scores) {
+  var labels = {
+    Move: 'Move support',
+    Focus: 'Focus support',
+    Recover: 'Recovery support'
+  };
+  return ['Move', 'Focus', 'Recover'].map(function(key) {
+    var score = scores[key] || 0;
+    return '<div class="need-card">' +
+      '<div class="need-top"><div class="need-title">' + esc(labels[key]) + '</div><div class="need-level">' + esc(needLevel(score)) + '</div></div>' +
+      '<div class="need-meter"><div class="need-fill" style="width:' + Math.max(18, Math.min(96, score)) + '%"></div></div>' +
+      '<span class="need-copy">' + esc(needReason(key, score)) + '</span>' +
+      '</div>';
+  }).join('');
+}
+
+function needLevel(score) {
+  return score >= 82 ? 'High' : score >= 68 ? 'Medium' : 'Light';
+}
+
+function needReason(key, score) {
+  var acts = D.activities.join(' ').toLowerCase();
+  var goals = D.goals.join(' ').toLowerCase();
+  if (key === 'Move') {
+    if (hasActivity('padel') || hasActivity('tennis')) return 'You chose a stop-start sport, so the useful angle is quick starts, brakes, turns, and repeated rallies.';
+    if (hasActivity('hyrox') || hasActivity('hiit') || hasActivity('crossfit')) return 'Your training repeats hard efforts, so creatine is most relevant when the session asks you to go again.';
+    if (hasActivity('running')) return 'Your running need is not about easy pace. It is intervals, climbs, faster finishes, and repeat sessions.';
+    if (hasActivity('gym') || hasActivity('weights')) return 'Your movement need leans strength-based: better quality when sets get hard and the session asks for force.';
+    return 'Your activity pattern points to daily movement support rather than a bodybuilding-only story.';
+  }
+  if (key === 'Focus') {
+    if (hasActivity('desk')) return 'Desk work adds mental load, so focus support belongs in the report alongside movement.';
+    if (hasActivity('padel') || hasActivity('tennis')) return 'Court sports need attention and reaction, especially when tired legs make timing harder.';
+    if (hasGoal('focus') || hasGoal('mental')) return 'You asked for mental energy, so the report connects creatine research to demanding days carefully.';
+    return score >= 68 ? 'Your goals include energy or fatigue, so focus is part of the daily rhythm story.' : 'Focus is secondary here, but still useful when busy days overlap with training.';
+  }
+  if (key === 'Recover') {
+    if (D.freq >= 5) return 'You exercise often, so tomorrow matters. Recovery support is about keeping the rhythm repeatable.';
+    if (D.freq >= 3) return 'With a few sessions each week, recovery is not dramatic. It is the difference between consistency and skipped days.';
+    if (hasGoal('recovery') || hasGoal('recover')) return 'You want recovery support, so the report keeps the routine simple and repeatable.';
+    return 'Recovery is lighter in your profile, but still useful as a daily habit foundation.';
+  }
+  return '';
 }
 
 function buildScoreBars(scores) {
@@ -2042,10 +2398,65 @@ function buildScoreBars(scores) {
   }).join('');
 }
 
+function buildSharePanel(title) {
+  return '<div class="share-panel">' +
+    '<div class="share-title">Ready to share</div>' +
+    '<div class="share-copy">Copy a short version of this result for WhatsApp, Threads, or your own notes.</div>' +
+    '<div class="share-actions">' +
+      '<button type="button" class="share-btn primary" onclick="copyReportSummary()">Copy result</button>' +
+      '<button type="button" class="share-btn secondary" onclick="window.print()">Save / print</button>' +
+    '</div>' +
+    '<div class="share-status" id="shareStatus"></div>' +
+  '</div>';
+}
+
+function copyReportSummary() {
+  var summary = buildShareText();
+  var status = document.getElementById('shareStatus');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(summary).then(function() {
+      if (status) status.textContent = 'Copied.';
+    }).catch(function() {
+      fallbackCopy(summary, status);
+    });
+  } else {
+    fallbackCopy(summary, status);
+  }
+}
+
+function fallbackCopy(text, status) {
+  var area = document.createElement('textarea');
+  area.value = text;
+  area.setAttribute('readonly', '');
+  area.style.position = 'fixed';
+  area.style.left = '-9999px';
+  document.body.appendChild(area);
+  area.select();
+  try {
+    document.execCommand('copy');
+    if (status) status.textContent = 'Copied.';
+  } catch (err) {
+    if (status) status.textContent = 'Copy unavailable on this browser.';
+  }
+  document.body.removeChild(area);
+}
+
+function buildShareText() {
+  var profile = lastAnalysis ? lastAnalysis.profileType : 'My creatine fit';
+  var needs = getShareScores(lastAnalysis || analyzeProfile());
+  return [
+    'My creatine fit: ' + profile,
+    'Move: ' + needLevel(needs.Move) + ' - ' + needReason('Move', needs.Move),
+    'Focus: ' + needLevel(needs.Focus) + ' - ' + needReason('Focus', needs.Focus),
+    'Recover: ' + needLevel(needs.Recover) + ' - ' + needReason('Recover', needs.Recover)
+  ].join('\\n');
+}
+
 function laneInsight(laneKey, metrics) {
   var copy = {
     strength: 'Most useful when training gets hard: the final reps, heavier sets, and sessions where quality matters more than hype.',
-    endurance: 'Most useful when your legs feel heavy but you still want to move well. Think real-life tired moments, not only race-day heroics.',
+    endurance: 'Most useful for the harder parts of running and training weeks: intervals, short climbs, faster finishes, and repeat sessions.',
+    stopStart: 'Most useful for sports that keep asking you to restart: quick starts, brakes, turns, stations, carries, and short hard efforts.',
     cognitive: 'Most useful on demanding days where training is only one part of the load. Work, meetings, and decisions also cost energy.',
     recovery: 'Most useful because you train ' + D.freq + 'x/week. The win is coming back ready enough to keep the rhythm.',
     women: 'Most useful when the explanation is built for active women, not copied from old supplement culture.',
@@ -2057,20 +2468,26 @@ function laneInsight(laneKey, metrics) {
 
 function buildPersonalInsights(analysis, metrics, citations) {
   var cards = [];
+  if (hasActivity('hyrox') || hasActivity('hiit') || hasActivity('crossfit')) {
+    cards.push(insightCard('Repeat', 'For hybrid conditioning', 'This is simple to describe and hard to do: run, push, pull, lift, breathe, then repeat. Creatine fits the part where short hard outputs keep stacking up, not as hype, but as support for the next effort' + citations.mark('stopStart') + '.'));
+  }
   if (hasActivity('running')) {
-    cards.push(insightCard('Run', 'For your runs', 'The useful moment is simple: your legs start feeling heavy, but you still want to move well. Creatine will not run for you; it may support the quick-energy work your muscles repeat across the week' + citations.mark('endurance') + '.'));
+    cards.push(insightCard('Run', 'For your runs', 'For steady easy runs, creatine is not the star. The better fit is the part most runners recognize: intervals, short climbs, faster finishes, or another run when your legs are not fully fresh' + citations.mark('endurance') + '.'));
   }
   if (hasActivity('padel') || hasActivity('tennis')) {
-    cards.push(insightCard('Court', 'For stop-start sport', 'Padel and tennis are short bursts, brakes, turns, and reactions. That makes repeated-effort research more useful than bodybuilder language' + citations.mark('endurance') + '.'));
+    cards.push(insightCard('Court', 'For padel or tennis', 'I would not promise a better smash or cleaner stroke. The practical angle is what happens between points: quick starts, brakes, turns, and staying useful when your legs and timing start to fade' + citations.mark('stopStart') + '.'));
+  }
+  if (hasActivity('football') || hasActivity('futsal')) {
+    cards.push(insightCard('Field', 'For futsal-style bursts', 'Futsal is press, sprint, stop, turn, and recover just enough to do it again. That makes repeated-sprint evidence a better match than long-distance endurance language' + citations.mark('stopStart') + '.'));
   }
   if (hasActivity('gym') || hasActivity('weights') || hasGoal('strength') || hasGoal('leaner')) {
     cards.push(insightCard('Lift', 'For the gym work', 'In the gym, the useful part is not “getting bulky.” It is better training quality when sets get hard, especially if strength is one of your goals' + citations.mark('strength') + '.'));
   }
   if (hasActivity('desk') || hasGoal('focus') || hasGoal('mental')) {
-    cards.push(insightCard('Focus', 'For work energy', 'You do not only get tired from workouts. Long screen time, meetings, decisions, and focus can drain you too. That is why the cognitive research belongs in your report' + citations.mark('cognitive') + '.'));
+    cards.push(insightCard('Focus', 'For work energy', 'A busy day can drain you before training even starts. Long screen time, meetings, decisions, and focus all count as load, so the cognitive research belongs in your report' + citations.mark('cognitive') + '.'));
   }
   if (D.freq >= 4 || hasGoal('recovery') || hasGoal('recover')) {
-    cards.push(insightCard('Reset', 'For tomorrow', 'Training ' + D.freq + ' times a week means tomorrow matters. The goal is not one heroic session; it is feeling ready enough to keep your rhythm' + citations.mark('recovery') + '.'));
+    cards.push(insightCard('Reset', 'For tomorrow', D.freq + ' sessions a week changes the goal. It is not about one perfect workout. It is about being ready enough tomorrow that the habit does not fall apart' + citations.mark('recovery') + '.'));
   }
   if (D.gender === 'Female') {
     cards.push(insightCard('You', 'For active women', 'Creatine should be explained through active wellness, strength confidence, and daily consistency, not only through old gym stereotypes' + citations.mark('women') + '.'));
@@ -2086,7 +2503,32 @@ function buildPersonalInsights(analysis, metrics, citations) {
 }
 
 function insightCard(icon, title, copy) {
-  return '<div class="routine-step"><strong><span class="mini-icon">' + esc(icon) + '</span> ' + esc(title) + '</strong>' + copy + '</div>';
+  return '<div class="routine-step"><strong class="insight-head"><span class="mini-icon">' + esc(iconGlyph(icon)) + '</span><span class="insight-title">' + esc(title) + '</span></strong><span class="insight-copy">' + copy + '</span></div>';
+}
+
+function iconGlyph(icon) {
+  var key = String(icon || '').toLowerCase();
+  var map = {
+    repeat: '⚡',
+    run: '🏃',
+    court: '🎾',
+    field: '⚽',
+    lift: '🏋️',
+    focus: '🧠',
+    reset: '🌙',
+    you: '🌸',
+    long: '🌿',
+    check: '✅',
+    habit: '🔁',
+    water: '💧',
+    shape: '💪',
+    safe: '🛡️',
+    hair: '💇',
+    dose: '3g',
+    mind: '🧠',
+    note: '💡'
+  };
+  return map[key] || '💡';
 }
 
 function buildRoutineSteps(metrics) {
@@ -2108,7 +2550,7 @@ function concernSentence() {
     'Is it safe for women?': 'Women-specific evidence should be part of the explanation, especially for active wellness and strength confidence.',
     'Brain / cognitive benefits?': 'The focus angle should stay careful: demanding days and mental fatigue support, not a magic productivity promise.',
     'Kidney & heart safety?': 'Healthy-adult safety reviews are useful, while kidney, heart, pregnancy, or medication questions belong with a qualified clinician.',
-    'Hair loss?': 'Hair loss deserves a calm answer: treat it as a misconception area, avoid scary forum claims, and track your own body if it is already a concern.',
+    'Hair loss?': 'Hair loss needs a measured answer: current evidence does not make it an expected creatine effect, but it is still worth tracking if this is already a personal concern.',
     'Aging & longevity?': 'The long-game story is useful muscle, confident movement, and routines you can keep, not vague longevity hype.',
     'Right dose for me?': 'Dose should stay simple first. A small daily routine is easier to sustain than loading, cycling, or changing timing every week.'
   };
@@ -2169,6 +2611,10 @@ function hasActivity(keyword) {
 
 function hasGoal(keyword) {
   return D.goals.join(' ').toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+}
+
+function hasConcern(keyword) {
+  return D.concerns.join(' ').toLowerCase().indexOf(keyword.toLowerCase()) > -1;
 }
 
 function esc(value) {
@@ -2244,10 +2690,57 @@ function hideAllErrors() {
 ───────────────────────────────────────── */
 function handleCTA(type) {
   if (type === 'science') {
-    window.print();
+    downloadReport();
   } else if (type === 'product') {
     window.location.reload();
   }
+}
+
+async function downloadReport() {
+  var report = document.getElementById('infographicCard') || document.getElementById('fullReport');
+  if (!report) {
+    window.print();
+    return;
+  }
+
+  var filename = 'daily-stack-lab-creatine-report-' + slugify(D.name || 'you') + '.html';
+  var html = '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' +
+    '<title>Daily Stack Lab Creatine Report</title><style>' + reportExportCss() + '</style></head><body>' +
+    '<main class="export-wrap"><h1>Your Daily Stack Lab report</h1>' + report.outerHTML +
+    '<p class="export-note">Educational context only. Not medical advice. Final product claims require review.</p></main></body></html>';
+
+  var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  var file = new File([blob], filename, { type: 'text/html' });
+
+  if (navigator.canShare && navigator.canShare({ files: [file] }) && navigator.share) {
+    try {
+      await navigator.share({
+        title: 'Daily Stack Lab Creatine Report',
+        text: 'Your personalized creatine report.',
+        files: [file]
+      });
+      return;
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+    }
+  }
+
+  var url = URL.createObjectURL(blob);
+  var link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+}
+
+function slugify(value) {
+  return String(value || 'you').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'you';
+}
+
+function reportExportCss() {
+  return 'body{margin:0;background:#F7F1E8;color:#1F2426;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.5}.export-wrap{max-width:760px;margin:0 auto;padding:28px 18px 44px}h1{font-size:24px;margin:0 0 18px}.infographic{background:linear-gradient(180deg,#FFF9EF 0%,#FFFFFF 100%);border:1px solid rgba(244,178,60,.38);border-radius:18px;padding:16px;text-align:left}.info-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(31,36,38,.08);padding-bottom:12px;margin-bottom:12px}.info-name{font-size:20px;font-weight:800;line-height:1.15}.info-type,.lane-body,.sources-list li,.export-note{color:#6B6760;font-size:12px}.info-logo{background:#1F2426;color:#F4B23C;border-radius:100px;padding:7px 10px;font-size:10px;font-weight:800;letter-spacing:.08em}.context-strip,.routine-grid,.score-bars,.needs-grid{display:grid;gap:8px;margin-bottom:14px}.context-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.context-pill,.routine-step,.need-card{background:#F7F1E8;border-radius:12px;padding:11px 12px;font-size:12px}.context-pill strong,.routine-step strong,.report-kicker{display:flex;align-items:center;gap:7px;color:#B26A08;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}.score-line{display:grid;grid-template-columns:74px 1fr 32px;gap:8px;align-items:center;font-size:11px;color:#6B6760}.score-track,.need-meter{height:7px;background:rgba(31,36,38,.1);border-radius:99px;overflow:hidden}.score-fill,.need-fill{height:100%;background:#F4B23C}.mini-icon{min-width:28px;height:28px;padding:0 6px;border-radius:50%;background:#FAEEDA;color:#633806;display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1}.sources-list{padding-left:16px}.sources-list a{color:#1F2426;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(244,178,60,.7)}.share-panel{display:none}@media(max-width:520px){.export-wrap{padding-inline:12px}.context-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}';
 }
 </script>
 

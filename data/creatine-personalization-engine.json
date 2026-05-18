@@ -1,0 +1,119 @@
+{
+  "version": "2.0.0",
+  "purpose": "Hybrid personalization matrix for creatine quiz results. Scoring selects profile diagnosis, research angles, trust barriers, and habit strategy before AI writes the final user-facing report.",
+  "dimensions": {
+    "moveDemand": "How much the user's body needs repeated physical output.",
+    "strengthDemand": "How much the routine depends on force production and progressive overload.",
+    "repeatEffort": "How often the user needs to go again after a burst, set, hill, rally, or interval.",
+    "stopStartDemand": "How much the user's sport depends on quick starts, brakes, turns, carries, stations, or repeated short hard efforts.",
+    "cognitiveLoad": "How much the result should discuss workday focus, mental fatigue, and brain-energy context.",
+    "recoveryPressure": "How much the user needs consistency between sessions.",
+    "trustBarrier": "How much reassurance is needed before benefits matter.",
+    "habitFriction": "How likely the user is to fail because the routine is inconvenient.",
+    "educationNeed": "How much basic explanation is needed.",
+    "optimizationNeed": "How much the user needs advanced tuning rather than basic education.",
+    "womenContext": "Whether women-specific research framing should be included."
+  },
+  "activityWeights": {
+    "Running": { "moveDemand": 3, "repeatEffort": 3, "stopStartDemand": 1, "recoveryPressure": 1, "researchAngles": ["endurance"] },
+    "Gym / Weights": { "moveDemand": 2, "strengthDemand": 4, "recoveryPressure": 1, "researchAngles": ["strength"] },
+    "Cycling": { "moveDemand": 3, "repeatEffort": 2, "recoveryPressure": 1, "researchAngles": ["endurance"] },
+    "Padel / Tennis": { "moveDemand": 3, "repeatEffort": 4, "stopStartDemand": 5, "cognitiveLoad": 1, "recoveryPressure": 1, "researchAngles": ["stopStart", "endurance"] },
+    "Swimming": { "moveDemand": 3, "repeatEffort": 2, "recoveryPressure": 1, "researchAngles": ["endurance"] },
+    "Yoga / Pilates": { "moveDemand": 1, "recoveryPressure": 2, "strengthDemand": 1, "researchAngles": ["recovery", "aging"] },
+    "HIIT / CrossFit": { "moveDemand": 4, "strengthDemand": 3, "repeatEffort": 4, "stopStartDemand": 4, "recoveryPressure": 2, "researchAngles": ["stopStart", "strength", "endurance"] },
+    "HIIT / Hyrox / CrossFit": { "moveDemand": 4, "strengthDemand": 3, "repeatEffort": 4, "stopStartDemand": 5, "recoveryPressure": 2, "researchAngles": ["stopStart", "strength", "endurance"] },
+    "Football / Futsal": { "moveDemand": 4, "repeatEffort": 4, "stopStartDemand": 4, "recoveryPressure": 2, "researchAngles": ["stopStart", "endurance"] },
+    "Hiking / Outdoor": { "moveDemand": 2, "repeatEffort": 1, "recoveryPressure": 2, "researchAngles": ["recovery", "aging"] },
+    "Desk job / Light activity": { "cognitiveLoad": 4, "recoveryPressure": 1, "educationNeed": 1, "researchAngles": ["cognitive"] }
+  },
+  "frequencyWeights": {
+    "0-1": { "trustBarrier": 1, "cognitiveLoad": 1, "educationNeed": 2, "habitFriction": 1 },
+    "2-3": { "moveDemand": 2, "recoveryPressure": 1 },
+    "4-5": { "moveDemand": 3, "repeatEffort": 2, "recoveryPressure": 3 },
+    "6-7": { "moveDemand": 4, "repeatEffort": 3, "recoveryPressure": 4, "optimizationNeed": 2 }
+  },
+  "goalWeights": {
+    "Build strength & lean muscle": { "strengthDemand": 4, "moveDemand": 1, "researchAngles": ["strength"] },
+    "Get leaner while staying strong": { "strengthDemand": 2, "trustBarrier": 1, "habitFriction": 1, "researchAngles": ["strength", "safety"] },
+    "Better performance & endurance": { "moveDemand": 2, "repeatEffort": 3, "researchAngles": ["endurance"] },
+    "More energy & less fatigue": { "moveDemand": 1, "repeatEffort": 2, "cognitiveLoad": 2, "recoveryPressure": 1, "researchAngles": ["endurance", "cognitive"] },
+    "Sharper focus & mental energy": { "cognitiveLoad": 4, "researchAngles": ["cognitive"] },
+    "Faster recovery": { "recoveryPressure": 4, "researchAngles": ["recovery"] },
+    "Healthy aging & active longevity": { "recoveryPressure": 1, "strengthDemand": 1, "educationNeed": 1, "researchAngles": ["aging"] }
+  },
+  "concernWeights": {
+    "Will I get bloated?": { "trustBarrier": 3, "educationNeed": 1, "researchAngles": ["safety"] },
+    "Will I get bulky?": { "trustBarrier": 3, "strengthDemand": -1, "researchAngles": ["safety"] },
+    "Is it safe for women?": { "trustBarrier": 3, "womenContext": 4, "researchAngles": ["women", "safety"] },
+    "Brain / cognitive benefits?": { "cognitiveLoad": 2, "educationNeed": 1, "researchAngles": ["cognitive"] },
+    "Kidney & heart safety?": { "trustBarrier": 5, "educationNeed": 2, "researchAngles": ["safety"] },
+    "Hair loss?": { "trustBarrier": 4, "educationNeed": 2, "researchAngles": ["safety"] },
+    "Aging & longevity?": { "recoveryPressure": 1, "strengthDemand": 1, "researchAngles": ["aging"] },
+    "Right dose for me?": { "trustBarrier": 2, "educationNeed": 2, "habitFriction": 1, "researchAngles": ["safety"] }
+  },
+  "experienceWeights": {
+    "Never tried it": { "trustBarrier": 2, "habitFriction": 2, "educationNeed": 3 },
+    "Tried, then stopped": { "habitFriction": 5, "trustBarrier": 1, "educationNeed": 1 },
+    "Currently taking it": { "optimizationNeed": 4 },
+    "Just researching": { "trustBarrier": 3, "educationNeed": 3 }
+  },
+  "formatWeights": {
+    "Gummy": { "habitFriction": 3, "routineSimplicity": 4 },
+    "Drink mix / stick pack": { "habitFriction": 2, "hydrationRoutine": 2 },
+    "Capsule": { "routineSimplicity": 3 },
+    "I do not care, as long as it works": { "educationNeed": 1 }
+  },
+  "profileRules": [
+    {
+      "id": "stop-start-athlete",
+      "label": "The Stop-Start Athlete",
+      "when": ["stopStartDemand", "repeatEffort"],
+      "description": "Padel, tennis, futsal, HIIT, or Hyrox-style routines where repeated short hard efforts matter."
+    },
+    {
+      "id": "workday-runner",
+      "label": "The Workday Runner",
+      "when": ["repeatEffort", "cognitiveLoad"],
+      "description": "High repeated physical effort plus meaningful workday cognitive demand."
+    },
+    {
+      "id": "active-mover",
+      "label": "The Active Mover",
+      "when": ["moveDemand", "repeatEffort"],
+      "description": "Several movement demands, usually sport plus training frequency."
+    },
+    {
+      "id": "strength-builder",
+      "label": "The Strength Builder",
+      "when": ["strengthDemand", "recoveryPressure"],
+      "description": "Strength or gym context with enough frequency to make recovery relevant."
+    },
+    {
+      "id": "curious-beginner",
+      "label": "The Curious Beginner",
+      "when": ["trustBarrier", "educationNeed"],
+      "description": "The person needs confidence and clarity before benefits matter."
+    },
+    {
+      "id": "low-friction-habit-builder",
+      "label": "The Habit Builder",
+      "when": ["habitFriction", "educationNeed"],
+      "description": "The main barrier is making creatine easy enough to repeat."
+    },
+    {
+      "id": "long-game-mover",
+      "label": "The Long-Game Mover",
+      "when": ["recoveryPressure", "strengthDemand"],
+      "description": "Active-aging, strength maintenance, and movement consistency are central."
+    }
+  ],
+  "claimGuardrails": [
+    "Do not claim creatine treats, cures, prevents, or heals any disease.",
+    "Do not claim guaranteed results or instant transformation.",
+    "Do not claim fat loss, testosterone increase, hair growth, or hair-loss prevention.",
+    "Do not say BPOM registered or Halal certified unless approved assets/status are provided.",
+    "For kidney, heart, pregnancy, medication, or medical concerns, recommend consulting a qualified clinician.",
+    "Use may support, can help support, is relevant for, or has been studied for. Avoid overclaiming."
+  ]
+}
