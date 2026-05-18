@@ -1,0 +1,2260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Creatine Fit Quiz — Personalized Result</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #F7F1E8;
+  color: #1F2426;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 16px 60px;
+}
+
+.pw-wrap {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* HEADER */
+.pw-header {
+  background: #1F2426;
+  padding: 28px 22px 22px;
+  border-radius: 20px 20px 0 0;
+}
+
+.pw-brand {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #F4B23C;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.pw-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.pw-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+
+.pw-prog-bar {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.pw-dot {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.18);
+  transition: background 0.3s;
+}
+
+.pw-dot.done  { background: rgba(244,178,60,0.5); }
+.pw-dot.active { background: #F4B23C; }
+
+.pw-step-lbl {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* BODY */
+.pw-body {
+  background: #ffffff;
+  border: 1px solid rgba(31,36,38,0.1);
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+  padding: 24px 20px;
+}
+
+.s-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1F2426;
+  margin-bottom: 4px;
+}
+
+.s-sub {
+  font-size: 13px;
+  color: #6B6760;
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+
+/* FIELDS */
+.field { margin-bottom: 14px; }
+
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6B6760;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+input[type=text],
+input[type=email],
+input[type=tel],
+input[type=number],
+select,
+textarea {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(31,36,38,0.18);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: #1F2426;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 84px;
+  resize: vertical;
+  line-height: 1.45;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #F4B23C;
+  border-width: 1.5px;
+  box-shadow: 0 0 0 3px rgba(244,178,60,0.12);
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* CHIPS */
+.chip-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  background: #ffffff;
+  border: 1px solid rgba(31,36,38,0.18);
+  border-radius: 100px;
+  font-size: 13px;
+  color: #1F2426;
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+  font-family: inherit;
+}
+
+.chip:hover { border-color: #F4B23C; }
+
+.chip.on {
+  background: #FAEEDA;
+  border-color: #F4B23C;
+  border-width: 1.5px;
+  color: #633806;
+  font-weight: 500;
+}
+
+/* FREQUENCY SLIDER */
+.freq-box {
+  background: #F7F1E8;
+  border: 1px solid rgba(31,36,38,0.1);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.freq-num {
+  font-size: 38px;
+  font-weight: 700;
+  color: #F4B23C;
+  text-align: center;
+  line-height: 1;
+}
+
+.freq-unit {
+  font-size: 13px;
+  color: #6B6760;
+  text-align: center;
+  margin-top: 4px;
+  margin-bottom: 14px;
+}
+
+input[type=range] {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 2px;
+  background: rgba(31,36,38,0.15);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #F4B23C;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 1.5px #F4B23C;
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #F4B23C;
+  border: 3px solid #ffffff;
+  cursor: pointer;
+}
+
+.scale-lbl {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #6B6760;
+  margin-top: 8px;
+}
+
+/* GOAL CARDS */
+.goal-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(31,36,38,0.15);
+  border-radius: 12px;
+  padding: 13px 15px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.goal-card:hover { border-color: #F4B23C; }
+
+.goal-card.on {
+  border-color: #F4B23C;
+  border-width: 1.5px;
+  background: #FAEEDA;
+}
+
+.radio-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(31,36,38,0.2);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.goal-card.on .radio-dot {
+  background: #F4B23C;
+  border-color: #F4B23C;
+}
+
+.radio-inner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  display: none;
+}
+
+.goal-card.on .radio-inner { display: block; }
+
+.gtitle {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 3px;
+  color: #1F2426;
+}
+
+.gdesc {
+  font-size: 12px;
+  color: #6B6760;
+  line-height: 1.45;
+}
+
+.goal-card.on .gtitle { color: #633806; }
+.goal-card.on .gdesc  { color: #854F0B; }
+
+/* CONCERN GRID */
+.conc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-bottom: 18px;
+}
+
+.conc-btn {
+  background: #ffffff;
+  border: 1px solid rgba(31,36,38,0.15);
+  border-radius: 12px;
+  padding: 13px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.conc-btn:hover { border-color: #F4B23C; }
+
+.conc-btn.on {
+  border-color: #F4B23C;
+  border-width: 1.5px;
+  background: #FAEEDA;
+}
+
+.conc-ico {
+  font-size: 18px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.conc-lbl {
+  font-size: 12px;
+  color: #1F2426;
+  line-height: 1.35;
+  font-family: inherit;
+}
+
+.conc-btn.on .conc-lbl {
+  color: #633806;
+  font-weight: 500;
+}
+
+/* DIVIDER */
+.divider {
+  height: 1px;
+  background: rgba(31,36,38,0.08);
+  margin: 18px 0;
+}
+
+/* NAV */
+.nav-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.back-btn {
+  width: 46px;
+  height: 48px;
+  background: #ffffff;
+  border: 1px solid rgba(31,36,38,0.15);
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: #1F2426;
+  flex-shrink: 0;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+
+.back-btn:hover { background: #F7F1E8; }
+
+.next-btn {
+  flex: 1;
+  background: #1F2426;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 100px;
+  padding: 14px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.next-btn:hover { opacity: 0.88; }
+.next-btn:active { transform: scale(0.98); }
+
+/* PREVIEW */
+.preview-hdr {
+  background: #1F2426;
+  padding: 14px 18px;
+  border-radius: 14px 14px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.preview-hdr-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.preview-badge {
+  background: #F4B23C;
+  color: #1F2426;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 11px;
+  border-radius: 100px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.preview-body {
+  background: #ffffff;
+  border: 1px solid rgba(31,36,38,0.12);
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+}
+
+.b-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(31,36,38,0.07);
+}
+
+.b-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.b-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #F4B23C;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.b-text {
+  font-size: 13px;
+  color: #1F2426;
+  line-height: 1.45;
+}
+
+.b-blur {
+  opacity: 0.2;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* FULL REPORT TEASER */
+.full-report-box {
+  background: #F7F1E8;
+  border: 1px solid rgba(31,36,38,0.1);
+  border-radius: 14px;
+  padding: 15px 18px;
+  margin-bottom: 14px;
+}
+
+.full-report-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6B6760;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+/* LOCK / EMAIL */
+.lock-box {
+  background: #ffffff;
+  border: 1px solid rgba(31,36,38,0.12);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.lock-ico {
+  width: 42px;
+  height: 42px;
+  background: #FAEEDA;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 18px;
+}
+
+.lock-title,
+.lock-sub {
+  text-align: center;
+}
+
+.lock-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #1F2426;
+}
+
+.lock-sub {
+  font-size: 12px;
+  color: #6B6760;
+  margin-bottom: 16px;
+  line-height: 1.55;
+}
+
+.lead-grid {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.budget-box {
+  background: #F7F1E8;
+  border: 1px solid rgba(31,36,38,0.1);
+  border-radius: 12px;
+  padding: 13px;
+}
+
+.budget-value {
+  color: #F4B23C;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.optional-note {
+  color: #999;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* BUTTONS */
+.cta-gold {
+  width: 100%;
+  background: #F4B23C;
+  color: #1F2426;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 100px;
+  padding: 15px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  font-family: inherit;
+}
+
+.cta-gold:hover { opacity: 0.9; }
+.cta-gold:active { transform: scale(0.98); }
+
+.cta-outline {
+  width: 100%;
+  background: transparent;
+  color: #1F2426;
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid rgba(31,36,38,0.18);
+  border-radius: 100px;
+  padding: 13px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+
+.cta-outline:hover { background: #F7F1E8; }
+
+/* ERROR */
+.err-msg {
+  font-size: 12px;
+  color: #E24B4A;
+  margin-top: 6px;
+  display: none;
+  padding: 8px 12px;
+  background: #FCEBEB;
+  border-radius: 8px;
+}
+
+/* SUCCESS */
+.success-wrap {
+  text-align: center;
+  padding: 36px 20px 20px;
+}
+
+.success-ico {
+  width: 64px;
+  height: 64px;
+  background: #F4B23C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  font-size: 28px;
+  color: #1F2426;
+}
+
+.success-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1F2426;
+}
+
+.success-sub {
+  font-size: 13px;
+  color: #6B6760;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.stat-box {
+  background: #F7F1E8;
+  border: 1px solid rgba(31,36,38,0.08);
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+}
+
+.stat-v {
+  font-size: 18px;
+  font-weight: 700;
+  color: #F4B23C;
+  margin-bottom: 4px;
+}
+
+.stat-l {
+  font-size: 10px;
+  color: #6B6760;
+  line-height: 1.35;
+}
+
+/* BADGES */
+.badge-row {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.mbadge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 11px;
+  border-radius: 100px;
+}
+
+.mb-g { background: #EAF3DE; color: #27500A; }
+.mb-b { background: #E6F1FB; color: #0C447C; }
+.mb-a { background: #FAEEDA; color: #633806; }
+
+.privacy-note {
+  font-size: 11px;
+  color: #999;
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+.mini-note {
+  font-size: 11px;
+  color: #6B6760;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.science-pill-row {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 10px 0 14px;
+}
+
+.science-pill {
+  font-size: 10px;
+  font-weight: 600;
+  color: #633806;
+  background: #FAEEDA;
+  border: 1px solid rgba(244,178,60,0.4);
+  border-radius: 100px;
+  padding: 5px 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.citation {
+  display: block;
+  font-size: 10px;
+  color: #8A7A65;
+  margin-top: 5px;
+  line-height: 1.45;
+}
+
+.report-card {
+  background: #fff;
+  border: 1px solid rgba(31,36,38,0.1);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+.report-card.with-icon {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 11px;
+  align-items: start;
+}
+
+.summary-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #FAEEDA;
+  color: #633806;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.report-kicker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #B26A08;
+  margin-bottom: 7px;
+}
+
+.report-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1F2426;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.report-copy {
+  font-size: 12px;
+  color: #6B6760;
+  line-height: 1.55;
+}
+
+.infographic {
+  background: linear-gradient(180deg, #FFF9EF 0%, #FFFFFF 100%);
+  border: 1px solid rgba(244,178,60,0.38);
+  border-radius: 18px;
+  padding: 16px;
+  margin: 18px 0;
+  text-align: left;
+}
+
+.info-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(31,36,38,0.08);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.info-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1F2426;
+  line-height: 1.15;
+}
+
+.info-type {
+  font-size: 11px;
+  color: #6B6760;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+.info-logo {
+  background: #1F2426;
+  color: #F4B23C;
+  border-radius: 100px;
+  padding: 7px 10px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.lane-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.lane-card {
+  background: #fff;
+  border: 1px solid rgba(31,36,38,0.09);
+  border-radius: 14px;
+  padding: 13px;
+}
+
+.lane-top {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 6px;
+}
+
+.lane-score {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #F4B23C;
+  color: #1F2426;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.lane-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1F2426;
+}
+
+.lane-body {
+  font-size: 12px;
+  color: #6B6760;
+  line-height: 1.5;
+}
+
+.routine-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.routine-step {
+  background: #F7F1E8;
+  border-radius: 12px;
+  padding: 11px 12px;
+  font-size: 12px;
+  color: #1F2426;
+  line-height: 1.45;
+}
+
+.routine-step strong {
+  display: block;
+  font-size: 11px;
+  color: #B26A08;
+  margin-bottom: 3px;
+}
+
+.sources-list {
+  padding-left: 16px;
+  margin-top: 8px;
+}
+
+.sources-list li {
+  font-size: 11px;
+  color: #6B6760;
+  line-height: 1.45;
+  margin-bottom: 7px;
+}
+
+.sources-list a {
+  color: #1F2426;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(244,178,60,0.7);
+}
+
+.summary-card {
+  background: #FFF8ED;
+  border: 1px solid rgba(244,178,60,0.35);
+  border-radius: 16px;
+  padding: 15px;
+  margin-bottom: 12px;
+}
+
+.summary-card p {
+  font-size: 13px;
+  color: #1F2426;
+  line-height: 1.58;
+}
+
+.context-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin: 12px 0 14px;
+}
+
+.context-pill {
+  background: #F7F1E8;
+  border: 1px solid rgba(31,36,38,0.08);
+  border-radius: 10px;
+  padding: 8px 9px;
+  font-size: 11px;
+  color: #1F2426;
+  line-height: 1.35;
+}
+
+.context-pill strong {
+  display: block;
+  font-size: 9px;
+  color: #8A7A65;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.score-bars {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.score-line {
+  display: grid;
+  grid-template-columns: 74px 1fr 32px;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #6B6760;
+}
+
+.score-track {
+  height: 7px;
+  background: rgba(31,36,38,0.1);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.score-fill {
+  height: 100%;
+  background: #F4B23C;
+  border-radius: 99px;
+}
+
+.cite-num {
+  color: #B26A08;
+  font-size: 10px;
+  font-weight: 800;
+  margin-left: 2px;
+  vertical-align: super;
+}
+
+.mini-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #FAEEDA;
+  color: #633806;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.footnotes {
+  border-top: 1px solid rgba(31,36,38,0.08);
+  margin-top: 14px;
+  padding-top: 10px;
+}
+
+.footnotes p {
+  font-size: 9.5px;
+  color: #7B7165;
+  line-height: 1.45;
+  font-style: italic;
+  margin-bottom: 5px;
+}
+
+@media (min-width: 720px) {
+  body { padding-top: 34px; }
+  .pw-wrap { max-width: 760px; }
+  .pw-body { padding: 30px; }
+  .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lane-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .routine-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .context-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media print {
+  body { background: #fff; padding: 0; }
+  .pw-header, .success-ico, .cta-gold, .cta-outline, .badge-row { display: none !important; }
+  .pw-wrap { max-width: none; }
+  .pw-body { border: none; padding: 0; }
+  .infographic { border-color: #ddd; }
+}
+</style>
+</head>
+<body>
+
+<div class="pw-wrap" id="pwWrap">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="pw-header">
+    <div class="pw-brand">Creatine Fit Quiz</div>
+    <div class="pw-title">Creatine is made for your routine,<br>not just bodybuilders.</div>
+    <div class="pw-sub">Answer 5 quick questions and get a practical, research-informed result card.</div>
+    <div class="pw-prog-bar">
+      <div class="pw-dot active" id="pd0"></div>
+      <div class="pw-dot" id="pd1"></div>
+      <div class="pw-dot" id="pd2"></div>
+      <div class="pw-dot" id="pd3"></div>
+      <div class="pw-dot" id="pd4"></div>
+    </div>
+    <div class="pw-step-lbl" id="stepLbl">Step 1 of 5 — About you</div>
+  </div>
+
+  <div class="pw-body">
+
+    <!-- ═══ STEP 1: PERSONAL DETAILS ═══ -->
+    <div id="s0">
+      <div class="s-title">Tell us about yourself</div>
+      <div class="s-sub">We'll match creatine research to your body, activity, and lifestyle.</div>
+
+      <div class="field">
+        <label>First name</label>
+        <input type="text" id="iName" placeholder="e.g. Irsan" autocomplete="given-name"/>
+      </div>
+
+      <div class="two">
+        <div class="field">
+          <label>Age</label>
+          <input type="number" id="iAge" placeholder="e.g. 30" min="15" max="75"/>
+        </div>
+        <div class="field">
+          <label>Gender</label>
+          <select id="iGender">
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="two">
+        <div class="field">
+          <label>Height (cm)</label>
+          <input type="number" id="iH" placeholder="e.g. 172" min="140" max="220"/>
+        </div>
+        <div class="field">
+          <label>Weight (kg)</label>
+          <input type="number" id="iW" placeholder="e.g. 68" min="35" max="160"/>
+        </div>
+      </div>
+
+      <div id="e0" class="err-msg">Please enter your name to continue.</div>
+
+      <div class="nav-row">
+        <button class="next-btn" onclick="go(0)">Continue &#8594;</button>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 2: ACTIVITIES ═══ -->
+    <div id="s1" style="display:none">
+      <div class="s-title">What activities do you do?</div>
+      <div class="s-sub">Pick all that apply. Creatine can support repeated effort, strength, recovery, and demanding workdays.</div>
+
+      <div class="chip-wrap" id="actWrap">
+        <div class="chip" onclick="tog(this)">&#127939; Running</div>
+        <div class="chip" onclick="tog(this)">&#127947; Gym / Weights</div>
+        <div class="chip" onclick="tog(this)">&#128692; Cycling</div>
+        <div class="chip" onclick="tog(this)">&#127934; Padel / Tennis</div>
+        <div class="chip" onclick="tog(this)">&#127944; Swimming</div>
+        <div class="chip" onclick="tog(this)">&#129340; Yoga / Pilates</div>
+        <div class="chip" onclick="tog(this)">&#9889; HIIT / CrossFit</div>
+        <div class="chip" onclick="tog(this)">&#9917; Football / Futsal</div>
+        <div class="chip" onclick="tog(this)">&#128507; Hiking / Outdoor</div>
+        <div class="chip" onclick="tog(this)">&#128188; Desk job / Light activity</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="s-title" style="font-size:15px; margin-bottom:3px">How often do you exercise?</div>
+      <div class="s-sub">Per week on average</div>
+
+      <div class="freq-box">
+        <div class="freq-num" id="fNum">3</div>
+        <div class="freq-unit" id="fUnit">days / week</div>
+        <input type="range" min="0" max="7" value="3" step="1" id="freqR" oninput="updFreq(this.value)"/>
+        <div class="scale-lbl"><span>Rest only</span><span>Every day</span></div>
+      </div>
+
+      <div id="e1" class="err-msg">Please select at least one activity to continue.</div>
+
+      <div class="nav-row">
+        <button class="back-btn" onclick="back(1)">&#8592;</button>
+        <button class="next-btn" onclick="go(1)">Continue &#8594;</button>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 3: GOALS ═══ -->
+    <div id="s2" style="display:none">
+      <div class="s-title">What are your goals?</div>
+      <div class="s-sub">Pick up to 4. We'll match creatine's benefits to these specifically.</div>
+
+      <div id="goalWrap">
+        <div class="goal-card" onclick="togGoal(this)">
+          <div class="radio-dot"><div class="radio-inner"></div></div>
+          <div>
+            <div class="gtitle">Build strength &amp; lean muscle</div>
+            <div class="gdesc">Support progressive strength training without bodybuilder framing</div>
+          </div>
+        </div>
+        <div class="goal-card" onclick="togGoal(this)">
+          <div class="radio-dot"><div class="radio-inner"></div></div>
+          <div>
+            <div class="gtitle">Get leaner while staying strong</div>
+            <div class="gdesc">Protect training quality and lean mass while improving daily habits</div>
+          </div>
+        </div>
+        <div class="goal-card" onclick="togGoal(this)">
+          <div class="radio-dot"><div class="radio-inner"></div></div>
+          <div>
+            <div class="gtitle">Better performance &amp; endurance</div>
+            <div class="gdesc">Support surges, intervals, rallies, and longer active sessions</div>
+          </div>
+        </div>
+        <div class="goal-card" onclick="togGoal(this)">
+          <div class="radio-dot"><div class="radio-inner"></div></div>
+          <div>
+            <div class="gtitle">More energy &amp; less fatigue</div>
+            <div class="gdesc">Feel less tired during and after workouts or a long work day</div>
+          </div>
+        </div>
+        <div class="goal-card" onclick="togGoal(this)">
+          <div class="radio-dot"><div class="radio-inner"></div></div>
+          <div>
+            <div class="gtitle">Sharper focus &amp; mental energy</div>
+            <div class="gdesc">Support cognitively demanding days, especially when sleep or stress is not ideal</div>
+          </div>
+        </div>
+        <div class="goal-card" onclick="togGoal(this)">
+          <div class="radio-dot"><div class="radio-inner"></div></div>
+          <div>
+            <div class="gtitle">Faster recovery</div>
+            <div class="gdesc">Support your rhythm between workouts and busy days</div>
+          </div>
+        </div>
+        <div class="goal-card" onclick="togGoal(this)">
+          <div class="radio-dot"><div class="radio-inner"></div></div>
+          <div>
+            <div class="gtitle">Healthy aging &amp; active longevity</div>
+            <div class="gdesc">Support strength, mobility, and active routines over time</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="e2" class="err-msg">Please select at least one goal to continue.</div>
+
+      <div class="nav-row">
+        <button class="back-btn" onclick="back(2)">&#8592;</button>
+        <button class="next-btn" onclick="go(2)">Continue &#8594;</button>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 4: CONCERNS + EXPERIENCE ═══ -->
+    <div id="s3" style="display:none">
+      <div class="s-title">Any specific concerns?</div>
+      <div class="s-sub">We'll address these directly in your personalized report. Pick all that apply.</div>
+
+      <div class="conc-grid">
+        <div class="conc-btn" onclick="tog(this)">
+          <span class="conc-ico">&#128167;</span>
+          <div class="conc-lbl">Will I get bloated?</div>
+        </div>
+        <div class="conc-btn" onclick="tog(this)">
+          <span class="conc-ico">&#128170;</span>
+          <div class="conc-lbl">Will I get bulky?</div>
+        </div>
+        <div class="conc-btn" onclick="tog(this)">
+          <span class="conc-ico">&#127800;</span>
+          <div class="conc-lbl">Is it safe for women?</div>
+        </div>
+        <div class="conc-btn" onclick="tog(this)">
+          <span class="conc-ico">&#129504;</span>
+          <div class="conc-lbl">Brain / cognitive benefits?</div>
+        </div>
+        <div class="conc-btn" onclick="tog(this)">
+          <span class="conc-ico">&#10084;</span>
+          <div class="conc-lbl">Kidney &amp; heart safety?</div>
+        </div>
+        <div class="conc-btn" onclick="tog(this)">
+          <span class="conc-ico">&#128135;</span>
+          <div class="conc-lbl">Hair loss?</div>
+        </div>
+        <div class="conc-btn" onclick="tog(this)">
+          <span class="conc-ico">&#9203;</span>
+          <div class="conc-lbl">Aging &amp; longevity?</div>
+        </div>
+        <div class="conc-btn" onclick="tog(this)">
+          <span class="conc-ico">&#128202;</span>
+          <div class="conc-lbl">Right dose for me?</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="s-title" style="font-size:15px; margin-bottom:3px">Your creatine experience?</div>
+      <div class="s-sub">Helps us frame the report at the right level for you.</div>
+
+      <div class="chip-wrap" id="expWrap">
+        <div class="chip" onclick="togSingle(this,'expWrap')">Never tried it</div>
+        <div class="chip" onclick="togSingle(this,'expWrap')">Tried, then stopped</div>
+        <div class="chip" onclick="togSingle(this,'expWrap')">Currently taking it</div>
+        <div class="chip" onclick="togSingle(this,'expWrap')">Just researching</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="s-title" style="font-size:15px; margin-bottom:3px">Preferred format?</div>
+      <div class="s-sub">Optional, but useful for product validation.</div>
+
+      <div class="chip-wrap" id="formatWrap">
+        <div class="chip" onclick="togSingle(this,'formatWrap')">Gummy</div>
+        <div class="chip" onclick="togSingle(this,'formatWrap')">Drink mix / stick pack</div>
+        <div class="chip" onclick="togSingle(this,'formatWrap')">Capsule</div>
+        <div class="chip" onclick="togSingle(this,'formatWrap')">I do not care, as long as it works</div>
+      </div>
+
+      <div id="e3" class="err-msg">Please select your experience level to continue.</div>
+
+      <div class="nav-row">
+        <button class="back-btn" onclick="back(3)">&#8592;</button>
+        <button class="next-btn" onclick="go(3)">See my results &#8594;</button>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 5: PREVIEW + EMAIL GATE ═══ -->
+    <div id="s4" style="display:none">
+      <div class="s-title">Your creatine snapshot</div>
+      <div class="s-sub" id="snapSub">Here's a preview of how creatine may fit your profile.</div>
+
+      <div class="preview-hdr">
+        <div class="preview-hdr-name" id="prevName">Your Profile</div>
+        <div class="preview-badge">Personal result</div>
+      </div>
+      <div class="preview-body" id="prevBenefits">
+        <!-- Dynamically populated by buildPreview() -->
+      </div>
+
+      <div class="full-report-box">
+        <div class="full-report-label">Full report unlocks</div>
+        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">Your top 3 evidence-backed creatine benefit lanes</div></div>
+        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">A daily rhythm plan for when and how to take it</div></div>
+        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">Myths vs facts tailored to your concerns</div></div>
+        <div class="b-row b-blur"><div class="b-dot"></div><div class="b-text">A personalized infographic with study citations</div></div>
+      </div>
+
+      <div class="lock-box">
+        <div class="lock-ico">&#128274;</div>
+        <div class="lock-title">Join the early testing list</div>
+        <div class="lock-sub">Unlock your full report and help shape the first product.</div>
+        <div class="lead-grid">
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="iEmail" placeholder="your@email.com" autocomplete="email"/>
+          </div>
+          <div class="field">
+            <label>WhatsApp <span class="optional-note">optional</span></label>
+            <input type="tel" id="iWhatsapp" placeholder="+62..." autocomplete="tel"/>
+          </div>
+          <div class="field">
+            <label>Which product interests you most?</label>
+            <select id="iProductInterest">
+              <option value="">Select one</option>
+              <option>Creatine gummy</option>
+              <option>Creatine + electrolytes drink mix</option>
+              <option>Both are interesting</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Sample testing interest</label>
+            <select id="iSampleInterest">
+              <option value="">Select one</option>
+              <option>Yes, invite me for sample testing</option>
+              <option>Maybe later</option>
+              <option>I only want updates for now</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Your monthly supplement budget</label>
+            <div class="budget-box">
+              <div class="budget-value" id="budgetVal">Rp 300.000</div>
+              <input type="range" min="100000" max="1000000" step="50000" value="300000" id="iBudget" oninput="updBudget(this.value)"/>
+              <div class="scale-lbl"><span>Rp 100.000</span><span>Rp 1.000.000</span></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Anything else we should know? <span class="optional-note">optional</span></label>
+            <textarea id="iNotes" rows="3" placeholder="Taste preference, concerns, activity routine, or feedback"></textarea>
+          </div>
+        </div>
+        <div id="e4" class="err-msg" style="margin-bottom:10px">Please enter a valid email address.</div>
+        <button class="cta-gold" onclick="submitEmail()">Unlock my full report &#8599;</button>
+      </div>
+
+      <div class="nav-row">
+        <button class="back-btn" onclick="back(4)">&#8592;</button>
+        <div style="flex:1; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999">Step 5 of 5</div>
+      </div>
+    </div>
+
+    <!-- ═══ SUCCESS SCREEN ═══ -->
+    <div id="sDone" style="display:none">
+      <div class="success-wrap">
+        <div class="success-ico">&#10003;</div>
+        <div class="success-title" id="doneTitle">Your report is ready.</div>
+        <div class="success-sub" id="doneSub">Your personalized creatine infographic is generated below.</div>
+
+        <div class="stat-grid" id="doneStats">
+          <!-- Populated by JS -->
+        </div>
+
+        <div id="fullReport">
+          <!-- Populated by JS -->
+        </div>
+
+        <button class="cta-gold" onclick="handleCTA('science')">
+          Save or print my infographic
+        </button>
+        <button class="cta-outline" onclick="handleCTA('product')">
+          Retake the quiz
+        </button>
+
+        <div class="badge-row">
+          <span class="mbadge mb-g">&#10003; Practical</span>
+          <span class="mbadge mb-b">&#10003; Personalized</span>
+          <span class="mbadge mb-a">&#10003; Research-informed</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.pw-body -->
+</div><!-- /.pw-wrap -->
+
+<script>
+/* Analytics placeholders:
+   page_view, quiz_step_view, quiz_started, form_start, join_early_access_click,
+   form_submit, product_interest_selected, preferred_format_selected
+*/
+
+var D = {
+  name: '', age: '', gender: '', height: '', weight: '',
+  freq: 3, activities: [], goals: [], concerns: [], experience: '', format: '', email: '',
+  whatsapp: '', productInterest: '', sampleInterest: '', monthlyBudget: 300000, notes: ''
+};
+
+var lastAnalysis = null;
+
+var stepLabels = [
+  'About you',
+  'Your activities',
+  'Your goals',
+  'Concerns & experience',
+  'Your report'
+];
+
+var lanes = {
+  strength: {
+    title: 'Strength & lean mass',
+    short: 'Helps your muscles recycle high-energy phosphate during resistance training and repeated efforts.',
+    color: 'amber'
+  },
+  endurance: {
+    title: 'Repeated effort & fatigue resistance',
+    short: 'Most relevant for runners, padel players, HIIT, cycling, and sports with surges or sprints.',
+    color: 'green'
+  },
+  cognitive: {
+    title: 'Focus & brain energy',
+    short: 'The brain also uses creatine-linked energy systems, especially under demanding conditions.',
+    color: 'blue'
+  },
+  recovery: {
+    title: 'Recovery rhythm',
+    short: 'Supports consistency between sessions by helping your body return to ready state.',
+    color: 'amber'
+  },
+  women: {
+    title: 'Women & active wellness',
+    short: 'Useful for women entering strength, movement, and life-stage wellness conversations.',
+    color: 'green'
+  },
+  aging: {
+    title: 'Active aging & mobility',
+    short: 'Best framed with movement: strength, lean tissue, muscle function, and everyday readiness.',
+    color: 'blue'
+  },
+  safety: {
+    title: 'Safety & daily use',
+    short: 'Helpful for addressing common concerns around bloating, bulk, kidneys, dosing, and consistency.',
+    color: 'green'
+  }
+};
+
+var evidence = {
+  strength: [
+    {
+      citation: 'Chilibeck et al., 2017, Open Access Journal of Sports Medicine',
+      title: 'Creatine plus resistance training and lean tissue mass in older adults',
+      takeaway: 'A meta-analysis linked creatine with resistance training to greater lean tissue and strength outcomes versus training alone.',
+      source: 'Research database: Creatine & Lean Muscle / Strength',
+      url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5679696/'
+    },
+    {
+      citation: 'Rawson & Volek, 2003, Journal of Strength and Conditioning Research',
+      title: 'Creatine, strength, and weightlifting performance',
+      takeaway: 'Review evidence supports creatine as a training aid for strength-oriented routines.',
+      source: 'Research database: Creatine & Lean Muscle / Strength',
+      url: 'https://pubmed.ncbi.nlm.nih.gov/14636102/'
+    }
+  ],
+  endurance: [
+    {
+      citation: 'Graef et al., 2009, JISSN',
+      title: 'Creatine with high-intensity interval training',
+      takeaway: 'A randomized trial studied creatine with HIIT and cardiorespiratory fitness, relevant for active people beyond bodybuilding.',
+      source: 'Research database: Creatine & Endurance / Fatigue Resistance',
+      url: 'https://pubmed.ncbi.nlm.nih.gov/19909536/'
+    },
+    {
+      citation: 'Nutrients, 2022',
+      title: 'Repeated sprint running power output',
+      takeaway: 'Creatine was studied in repeated treadmill sprinting, a useful match for sports with stop-start efforts.',
+      source: 'Research database: Creatine & Endurance / Fatigue Resistance',
+      url: 'https://www.mdpi.com/2072-6643/14/6/1140'
+    }
+  ],
+  cognitive: [
+    {
+      citation: 'Frontiers in Nutrition, 2024',
+      title: 'Systematic review and meta-analysis on cognitive function',
+      takeaway: 'Adult cognitive-function evidence is strongest as an emerging support area, especially for demanding mental tasks.',
+      source: 'Research database: Creatine & Cognitive Function',
+      url: 'https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2024.1424972/full'
+    },
+    {
+      citation: 'Sandkühler et al., 2023, BMC Medicine',
+      title: 'Randomized controlled study on cognitive performance',
+      takeaway: 'Creatine has been tested in controlled cognitive-performance settings, supporting a careful Focus narrative.',
+      source: 'Research database: Creatine & Cognitive Function',
+      url: 'https://bmcmedicine.biomedcentral.com/articles/10.1186/s12916-023-03146-5'
+    }
+  ],
+  recovery: [
+    {
+      citation: 'Gordji-Nejad et al., 2024, Scientific Reports',
+      title: 'Creatine, cognition, and sleep deprivation',
+      takeaway: 'Sleep-loss research supports a cautious resilience story for high-demand days, not a sleep-disorder claim.',
+      source: 'Research database: Creatine & Sleep / Sleep Deprivation Resilience',
+      url: 'https://pubmed.ncbi.nlm.nih.gov/38418482/'
+    },
+    {
+      citation: 'Nutrients, 2024',
+      title: 'Total sleep duration following resistance training days',
+      takeaway: 'A small RCT in naturally menstruating females connects creatine research to recovery-day context.',
+      source: 'Research database: Creatine & Sleep / Sleep Deprivation Resilience',
+      url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11357324/'
+    }
+  ],
+  women: [
+    {
+      citation: 'Smith-Ryan et al., 2021, Nutrients',
+      title: "Creatine supplementation in women's health",
+      takeaway: 'A lifespan perspective supports making creatine education more inclusive for women and active wellness.',
+      source: "Research database: Creatine & Women Related Health Benefits",
+      url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC7998865/'
+    },
+    {
+      citation: 'Nutrients, 2025',
+      title: 'Creatine and performance in active females',
+      takeaway: 'A systematic review specifically examines active female performance, useful for non-hardcore positioning.',
+      source: "Research database: Creatine & Women Related Health Benefits",
+      url: 'https://www.mdpi.com/2072-6643/17/2/238'
+    }
+  ],
+  aging: [
+    {
+      citation: 'Gualano et al., 2019, Journal of Clinical Medicine',
+      title: 'Creatine, aging muscle, and bone health review',
+      takeaway: 'Review evidence connects creatine with muscle and bone topics in aging, best paired with movement and conservative active-aging language.',
+      source: 'Research database: Creatine & Bone / Musculoskeletal Aging',
+      url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC6518405/'
+    },
+    {
+      citation: 'Forbes et al., 2021, Nutrients',
+      title: 'Creatine strategies for lean tissue and strength in older adults',
+      takeaway: 'A meta-analysis supports active-aging education around lean tissue, strength, and training.',
+      source: 'Research database: Creatine & Lean Muscle / Strength',
+      url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8229907/'
+    }
+  ],
+  safety: [
+    {
+      citation: 'Kreider et al., 2017, GSSI Sports Science Exchange',
+      title: 'Safety and efficacy across 25 years of creatine research',
+      takeaway: 'Long-running reviews help address common safety misconceptions for healthy adults.',
+      source: 'Research database: Creatine Safety — Study References',
+      url: 'https://www.gssiweb.org/sports-science-exchange/article/the-safety-and-efficacy-of-creatine-monohydrate-supplementation-what-we-have-learned-from-the-past-25-years-of-research'
+    },
+    {
+      citation: 'Antonio et al., 2021, JISSN',
+      title: 'Common questions and misconceptions about creatine',
+      takeaway: 'Useful for explaining that creatine is not only for bodybuilders and does not need a complicated routine.',
+      source: 'Research database: Creatine Safety — Study References',
+      url: 'https://jissn.biomedcentral.com/articles/10.1186/s12970-021-00412-w'
+    }
+  ]
+};
+
+var activityLaneMap = [
+  { match: ['gym', 'weights', 'hiit', 'crossfit'], lane: 'strength', points: 3 },
+  { match: ['running', 'cycling', 'padel', 'tennis', 'football', 'futsal', 'swimming'], lane: 'endurance', points: 3 },
+  { match: ['padel', 'tennis', 'hiit', 'crossfit', 'football', 'futsal'], lane: 'recovery', points: 1 },
+  { match: ['yoga', 'pilates', 'hiking', 'outdoor'], lane: 'recovery', points: 2 },
+  { match: ['desk job', 'light activity'], lane: 'cognitive', points: 3 },
+  { match: ['yoga', 'pilates', 'hiking', 'outdoor'], lane: 'aging', points: 1 }
+];
+
+var goalLaneMap = [
+  { match: ['strength', 'muscle', 'leaner', 'strong'], lane: 'strength', points: 3 },
+  { match: ['performance', 'endurance', 'run', 'train longer'], lane: 'endurance', points: 3 },
+  { match: ['energy', 'fatigue'], lane: 'endurance', points: 2 },
+  { match: ['energy', 'fatigue', 'focus', 'brain', 'mental'], lane: 'cognitive', points: 2 },
+  { match: ['recovery', 'recover'], lane: 'recovery', points: 3 },
+  { match: ['aging', 'longevity'], lane: 'aging', points: 3 }
+];
+
+var concernLaneMap = [
+  { match: ['bloated', 'bulky', 'kidney', 'heart', 'dose', 'hair loss'], lane: 'safety', points: 3 },
+  { match: ['women'], lane: 'women', points: 3 },
+  { match: ['brain', 'cognitive'], lane: 'cognitive', points: 2 },
+  { match: ['aging', 'longevity'], lane: 'aging', points: 2 }
+];
+
+/* ─────────────────────────────────────────
+   STEP NAVIGATION
+───────────────────────────────────────── */
+function setStep(n) {
+  for (var i = 0; i <= 4; i++) {
+    var el = document.getElementById('s' + i);
+    if (el) el.style.display = (i === n) ? 'block' : 'none';
+    var dot = document.getElementById('pd' + i);
+    if (dot) dot.className = 'pw-dot' + (i < n ? ' done' : i === n ? ' active' : '');
+  }
+  document.getElementById('stepLbl').textContent =
+    'Step ' + (n + 1) + ' of 5 — ' + stepLabels[Math.min(n, 4)];
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function back(step) {
+  setStep(step - 1);
+}
+
+/* ─────────────────────────────────────────
+   FORWARD NAVIGATION WITH VALIDATION
+───────────────────────────────────────── */
+function go(step) {
+  hideAllErrors();
+
+  if (step === 0) {
+    var n = document.getElementById('iName').value.trim();
+    if (!n) { showErr('e0', 'Please enter your name to continue.'); return; }
+    D.name   = n;
+    D.age    = document.getElementById('iAge').value;
+    D.gender = document.getElementById('iGender').value;
+    D.height = document.getElementById('iH').value;
+    D.weight = document.getElementById('iW').value;
+    setStep(1);
+
+  } else if (step === 1) {
+    var acts = document.querySelectorAll('#actWrap .chip.on');
+    if (!acts.length) { showErr('e1', 'Please select at least one activity to continue.'); return; }
+    D.activities = Array.from(acts).map(function(c) { return c.textContent.trim(); });
+    D.freq = parseInt(document.getElementById('freqR').value, 10);
+    setStep(2);
+
+  } else if (step === 2) {
+    var goals = document.querySelectorAll('#goalWrap .goal-card.on');
+    if (!goals.length) { showErr('e2', 'Please select at least one goal to continue.'); return; }
+    D.goals = Array.from(goals).map(function(c) { return c.querySelector('.gtitle').textContent.trim(); });
+    setStep(3);
+
+  } else if (step === 3) {
+    var exp = document.querySelector('#expWrap .chip.on');
+    if (!exp) { showErr('e3', 'Please select your experience level to continue.'); return; }
+    D.experience = exp.textContent.trim();
+    var fmt = document.querySelector('#formatWrap .chip.on');
+    D.format = fmt ? fmt.textContent.trim() : 'No format preference yet';
+    var concs = document.querySelectorAll('.conc-btn.on');
+    D.concerns = Array.from(concs).map(function(c) { return c.querySelector('.conc-lbl').textContent.trim(); });
+    buildPreview();
+    setStep(4);
+  }
+}
+
+/* ─────────────────────────────────────────
+   EMAIL SUBMIT
+───────────────────────────────────────── */
+async function submitEmail() {
+  var em = document.getElementById('iEmail').value.trim();
+  var whatsapp = document.getElementById('iWhatsapp').value.trim();
+  var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+  if (!valid) {
+    document.getElementById('iEmail').style.borderColor = '#E24B4A';
+    showErr('e4', 'Please enter a valid email address.');
+    return;
+  }
+  if (whatsapp && !/^[+\d][\d\s()-]{6,}$/.test(whatsapp)) {
+    document.getElementById('iWhatsapp').style.borderColor = '#E24B4A';
+    showErr('e4', 'Please enter a valid WhatsApp number or leave it blank.');
+    return;
+  }
+  D.email = em;
+  D.whatsapp = whatsapp;
+  D.productInterest = document.getElementById('iProductInterest').value;
+  D.sampleInterest = document.getElementById('iSampleInterest').value;
+  D.monthlyBudget = parseInt(document.getElementById('iBudget').value, 10);
+  D.notes = document.getElementById('iNotes').value.trim();
+  lastAnalysis = lastAnalysis || analyzeProfile();
+
+  /* SEND DATA TO YOUR BACKEND / EMAIL PLATFORM HERE.
+     Recommended payload: D + lastAnalysis.topLanes + selected citations.
+
+     fetch('https://your-api.com/leads', {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({ profile: D, analysis: lastAnalysis })
+     })
+     .then(function(res) { return res.json(); })
+     .then(function(data) { console.log('Lead saved:', data); })
+     .catch(function(err) { console.error('Error:', err); });
+
+     Placeholder integrations:
+     - Klaviyo lead profile + quiz properties
+     - Airtable validation database
+     - Meta Pixel / TikTok Pixel / GA4 form_submit event
+  ──────────────────────────────────────────────────────── */
+  console.log('Creatine quiz submission:', { profile: D, analysis: lastAnalysis });
+  D.consent = true;
+  await saveLead(D, lastAnalysis);
+
+  // Hide all steps
+  for (var i = 0; i <= 4; i++) {
+    var el = document.getElementById('s' + i);
+    if (el) el.style.display = 'none';
+  }
+
+  // Mark all dots complete
+  for (var i = 0; i < 5; i++) {
+    var dot = document.getElementById('pd' + i);
+    if (dot) dot.className = 'pw-dot done';
+  }
+  document.getElementById('stepLbl').textContent = 'Complete — your report is ready';
+
+  // Build success stats
+  var fl = D.freq;
+  var flbl = fl <= 1 ? 'Light' : fl <= 3 ? 'Moderate' : fl <= 5 ? 'Active' : 'Intense';
+  var matchedCount = document.querySelectorAll('#prevBenefits .b-row').length;
+
+  document.getElementById('doneTitle').textContent = "You're all set, " + D.name + ".";
+  document.getElementById('doneSub').textContent =
+    "Your full personalized creatine infographic is unlocked. Email captured: " + D.email + ".";
+
+  document.getElementById('doneStats').innerHTML =
+    '<div class="stat-box"><div class="stat-v">3g</div><div class="stat-l">Simple daily start</div></div>' +
+    '<div class="stat-box"><div class="stat-v">' + flbl + '</div><div class="stat-l">Routine type</div></div>' +
+    '<div class="stat-box"><div class="stat-v">' + matchedCount + '</div><div class="stat-l">Insight hooks</div></div>';
+
+  document.getElementById('fullReport').innerHTML =
+    '<div class="report-card"><div class="report-kicker">Generating</div><div class="report-title">Building your personalized result...</div><div class="report-copy">Reading your activity pattern, matching your concerns, and selecting the right research notes.</div></div>';
+
+  try {
+    var generated = await generateAIReport();
+    document.getElementById('fullReport').innerHTML = renderGeneratedReport(generated.report, generated.diagnosis);
+  } catch (err) {
+    console.warn('AI report unavailable, using local fallback:', err);
+    document.getElementById('fullReport').innerHTML = buildFullReport(lastAnalysis);
+  }
+
+  // Show success screen
+  document.getElementById('sDone').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function saveLead(profile, analysis) {
+  if (window.location.protocol === 'file:') return;
+  return fetch('/api/leads', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      profile: profile,
+      consent: true,
+      analysis: {
+        profileType: analysis.profileType,
+        topLanes: analysis.topLanes,
+        previewClaims: analysis.previewClaims
+      },
+      source: 'creatine_fit_quiz'
+    })
+  }).then(function(res) {
+    if (!res.ok) throw new Error('Lead save failed with status ' + res.status);
+    return res.json();
+  }).catch(function(err) {
+    console.warn('Lead save unavailable:', err);
+  });
+}
+
+async function generateAIReport() {
+  if (window.location.protocol === 'file:') {
+    throw new Error('AI report API requires the local server, not file://');
+  }
+  var response = await fetch('/api/generate-creatine-report', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ profile: D })
+  });
+  if (!response.ok) throw new Error('Report API failed');
+  return response.json();
+}
+
+function renderGeneratedReport(report, diagnosis) {
+  var scores = report.scores || {};
+  var insights = Array.isArray(report.insights) ? report.insights : [];
+  var routine = Array.isArray(report.routine) ? report.routine : [];
+  var footnotes = Array.isArray(report.footnotes) ? report.footnotes : [];
+
+  return '<div class="report-card with-icon">' +
+    '<div class="summary-icon">You</div><div>' +
+    '<div class="report-kicker">' + esc(report.generatedBy === 'gemini' || report.generatedBy === 'openai' ? 'AI-personalized result' : 'Personalized result') + '</div>' +
+    '<div class="report-title">' + esc(report.headline || 'Your creatine result is ready.') + '</div>' +
+    '<div class="report-copy">' + esc(report.summary || '') + '</div></div>' +
+    '</div>' +
+    '<div class="infographic" id="infographicCard">' +
+      '<div class="info-head">' +
+        '<div><div class="info-name">' + esc(report.profileTitle || diagnosis.profileType || 'Your Creatine Fit') + '</div>' +
+        '<div class="info-type">' + esc(activitySummary()) + ' · ' + esc(trainingLoadLabel()) + ' · ' + esc(D.experience || 'Experience not selected') + '</div></div>' +
+        '<div class="info-logo">Result</div>' +
+      '</div>' +
+      '<div class="context-strip">' + buildContextStrip(getBodyMetrics()) + '</div>' +
+      '<div class="report-kicker">Fit score</div>' +
+      '<div class="score-bars">' + buildScoreBars({ Move: scores.Move || scores.move || 70, Focus: scores.Focus || scores.focus || 60, Recover: scores.Recover || scores.recover || 60 }) + '</div>' +
+      '<div class="report-kicker">Personal insights</div>' +
+      '<div class="routine-grid">' + insights.map(renderInsight).join('') + '</div>' +
+      '<div class="report-kicker" style="margin-top:14px">Simple routine</div>' +
+      '<div class="routine-grid">' + routine.map(function(item, index) { return '<div class="routine-step"><strong>' + esc(['Amount','Timing','Habit'][index] || 'Step') + '</strong>' + renderCitedText(item) + '</div>'; }).join('') + '</div>' +
+      '<div class="report-kicker" style="margin-top:14px">Selected research basis</div>' +
+      '<ul class="sources-list">' + footnotes.map(renderFootnote).join('') + '</ul>' +
+    '</div>';
+}
+
+function renderInsight(item) {
+  return '<div class="routine-step"><strong><span class="mini-icon">' + esc(item.icon || 'Note') + '</span> ' + esc(item.title || 'Insight') + '</strong>' + renderCitedText(item.text || '') + '</div>';
+}
+
+function renderFootnote(item, index) {
+  var id = item.id || index + 1;
+  var title = item.title || item.citation || 'Research reference';
+  var url = item.url || '#';
+  var citation = item.citation || '';
+  return '<li><sup>' + id + '</sup> <a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(title) + '</a><br><span>' + esc(citation) + '</span></li>';
+}
+
+function renderCitedText(text) {
+  return esc(text).replace(/\^(\d+)/g, '<sup class="cite-num">$1</sup>').replace(/([¹²³⁴⁵⁶⁷⁸⁹])/g, '<sup class="cite-num">$1</sup>');
+}
+
+/* ─────────────────────────────────────────
+   BUILD DYNAMIC PREVIEW
+───────────────────────────────────────── */
+function buildPreview() {
+  var name = D.name;
+  var analysis = analyzeProfile();
+  lastAnalysis = analysis;
+  document.getElementById('prevName').textContent = name + "'s Profile";
+  document.getElementById('snapSub').textContent =
+    'Based on your answers, ' + name + ', creatine looks most relevant for ' + analysis.profileType.toLowerCase() + '.';
+
+  var html = '<div class="science-pill-row">' +
+    analysis.topLanes.map(function(lane) {
+      return '<span class="science-pill">' + esc(lanes[lane.key].title) + '</span>';
+    }).join('') +
+    '</div>';
+
+  analysis.previewClaims.forEach(function(item) {
+    html += '<div class="b-row"><div class="b-dot"></div><div class="b-text">' +
+      esc(item.text) +
+      '<span class="citation">Based on: ' + esc(item.citation) + '</span>' +
+      '</div></div>';
+  });
+
+  html += '<div class="mini-note">Full report: your routine, insights, and sources.</div>';
+  document.getElementById('prevBenefits').innerHTML = html;
+}
+
+function analyzeProfile() {
+  var scores = {
+    strength: 1,
+    endurance: 1,
+    cognitive: 1,
+    recovery: 1,
+    women: 0,
+    aging: 0,
+    safety: 1
+  };
+  var reasons = [];
+
+  D.activities.forEach(function(activity) {
+    addMatches(activity, activityLaneMap, scores, reasons, 'activity');
+  });
+
+  D.goals.forEach(function(goal) {
+    addMatches(goal, goalLaneMap, scores, reasons, 'goal');
+  });
+
+  D.concerns.forEach(function(concern) {
+    addMatches(concern, concernLaneMap, scores, reasons, 'concern');
+  });
+
+  if (D.freq >= 4) {
+    scores.recovery += 2;
+    scores.endurance += 1;
+    reasons.push('You train often, so consistency and recovery rhythm matter.');
+  } else if (D.freq <= 1) {
+    scores.safety += 1;
+    scores.cognitive += 1;
+    reasons.push('A simple daily routine can work even before training becomes intense.');
+  }
+
+  if ((D.gender || '').toLowerCase() === 'female') {
+    scores.women += 3;
+    scores.safety += 1;
+    reasons.push('Your report includes women-specific creatine research.');
+  }
+
+  var ageNum = parseInt(D.age, 10);
+  if (ageNum >= 35) {
+    scores.aging += 2;
+    scores.strength += 1;
+    reasons.push('Active-aging evidence becomes more relevant from the mid-30s onward.');
+  }
+
+  var topLanes = Object.keys(scores)
+    .map(function(key) { return { key: key, score: scores[key] }; })
+    .sort(function(a, b) { return b.score - a.score; })
+    .slice(0, 3);
+
+  var profileType = inferProfileType(topLanes);
+  var previewClaims = topLanes.map(function(lane) {
+    var ev = evidence[lane.key][0];
+    return {
+      lane: lane.key,
+      text: claimForLane(lane.key),
+      citation: ev.citation
+    };
+  });
+
+  return {
+    scores: scores,
+    reasons: reasons.slice(0, 4),
+    topLanes: topLanes,
+    profileType: profileType,
+    previewClaims: previewClaims
+  };
+}
+
+function addMatches(value, map, scores, reasons, sourceType) {
+  var text = value.toLowerCase();
+  map.forEach(function(item) {
+    var hit = item.match.some(function(keyword) { return text.indexOf(keyword) > -1; });
+    if (hit) {
+      scores[item.lane] += item.points;
+      if (sourceType !== 'concern') reasons.push('Matched ' + lanes[item.lane].title + ' from: ' + value);
+    }
+  });
+}
+
+function inferProfileType(topLanes) {
+  var keys = topLanes.map(function(item) { return item.key; }).join('|');
+  if (keys.indexOf('strength') > -1 && keys.indexOf('endurance') > -1) return 'The Active Mover';
+  if (keys.indexOf('cognitive') > -1 && keys.indexOf('endurance') > -1) return 'The Workday Athlete';
+  if (keys.indexOf('women') > -1 && keys.indexOf('strength') > -1) return 'The Active Wellness Builder';
+  if (keys.indexOf('aging') > -1) return 'The Long-Game Mover';
+  if (keys.indexOf('safety') > -1) return 'The Curious Beginner';
+  return 'The Daily Rhythm Builder';
+}
+
+function claimForLane(laneKey) {
+  var copy = {
+    strength: 'Your strength angle is about better training quality when the work gets hard, not chasing a bodybuilder look.',
+    endurance: 'Your movement angle is about tired-leg moments: when you still want to move well near the end of a run, rally, or busy training week.',
+    cognitive: 'Your workday matters too. The full report connects training fatigue with long screen time, decisions, and focus.',
+    recovery: 'Your routine needs tomorrow to feel manageable. The full report turns recovery into a simple daily rhythm, not a dramatic promise.',
+    women: 'Your report uses women-specific research so the explanation fits active wellness, not only gym stereotypes.',
+    aging: 'Your long-game angle is practical: useful muscle, confident movement, and routines you can keep over time.',
+    safety: 'Your main blocker may be confidence, not motivation. The full report separates common creatine worries from what research actually supports.'
+  };
+  return copy[laneKey];
+}
+
+function buildFullReport(analysis) {
+  var topLanes = analysis.topLanes;
+  var firstName = esc(D.name);
+  var metrics = getBodyMetrics();
+  var citations = createCitationManager();
+  var laneCards = topLanes.map(function(lane) {
+    var score = Math.min(99, 62 + lane.score * 7);
+    return '<div class="lane-card">' +
+      '<div class="lane-top"><div class="lane-score">' + score + '</div><div><div class="lane-title">' + esc(lanes[lane.key].title) + citations.mark(lane.key) + '</div></div></div>' +
+      '<div class="lane-body">' + esc(laneInsight(lane.key, metrics)) + '</div>' +
+      '</div>';
+  }).join('');
+  var scoreBars = buildScoreBars(getShareScores(analysis));
+
+  return '<div class="report-card with-icon">' +
+    '<div class="summary-icon">You</div><div><div class="report-kicker">Personalized result</div>' +
+    '<div class="report-title">' + firstName + ', here is what your routine is telling me.</div>' +
+    '<div class="report-copy">I read your answers as a lifestyle pattern: what your week asks from your body, what drains your focus, what concerns could block the habit, and what format you can realistically repeat.</div></div>' +
+    '</div>' +
+    '<div class="infographic" id="infographicCard">' +
+      '<div class="info-head">' +
+        '<div><div class="info-name">Your Creatine Fit: ' + esc(analysis.profileType) + '</div>' +
+        '<div class="info-type">' + esc(activitySummary()) + ' · ' + esc(trainingLoadLabel()) + ' · ' + esc(D.experience || 'Experience not selected') + '</div></div>' +
+        '<div class="info-logo">Result</div>' +
+      '</div>' +
+      '<div class="context-strip">' + buildContextStrip(metrics) + '</div>' +
+      '<div class="summary-card"><div class="report-kicker">Summary of you</div><p>' + buildSummaryOfYou(analysis, metrics) + '</p></div>' +
+      '<div class="report-kicker">Fit score</div>' +
+      '<div class="score-bars">' + scoreBars + '</div>' +
+      '<div class="report-kicker">Your top benefit lanes</div>' +
+      '<div class="lane-grid">' + laneCards + '</div>' +
+      '<div class="report-kicker" style="margin-top:14px">Personal insights</div>' +
+      '<div class="routine-grid">' + buildPersonalInsights(analysis, metrics, citations) + '</div>' +
+      '<div class="report-kicker">Daily rhythm plan</div>' +
+      '<div class="routine-grid">' + buildRoutineSteps(metrics) + '</div>' +
+      '<div class="report-kicker" style="margin-top:14px">Selected research basis</div>' +
+      '<ul class="sources-list">' + citations.basisHtml() + '</ul>' +
+      '<div class="footnotes">' + citations.footnotesHtml() + '</div>' +
+    '</div>';
+}
+
+function getBodyMetrics() {
+  var height = parseFloat(D.height);
+  var weight = parseFloat(D.weight);
+  var bmi = height && weight ? weight / Math.pow(height / 100, 2) : null;
+  return {
+    height: height || null,
+    weight: weight || null,
+    bmi: bmi,
+    bmiLabel: bmi ? (bmi < 18.5 ? 'lighter frame' : bmi < 25 ? 'middle range' : bmi < 30 ? 'higher load' : 'higher body-load context') : 'not calculated'
+  };
+}
+
+function buildContextStrip(metrics) {
+  var goals = D.goals.length ? D.goals.map(shortClean).join(', ') : 'not selected';
+  var concerns = D.concerns.length ? D.concerns.join(', ') : 'none selected';
+  return [
+    ['Routine', activitySummary()],
+    ['Frequency', D.freq + 'x/week, ' + trainingLoadLabel()],
+    ['Goals', goals],
+    ['Concerns', concerns],
+    ['Experience', D.experience || 'not selected'],
+    ['Format', D.format || 'No preference']
+  ].map(function(item) {
+    return '<div class="context-pill"><strong>' + esc(item[0]) + '</strong>' + esc(item[1]) + '</div>';
+  }).join('');
+}
+
+function buildSummaryOfYou(analysis, metrics) {
+  var concernLine = D.concerns.length
+    ? ' The report also answers the worries that could stop the habit before it starts.'
+    : '';
+  return esc('Hi ' + D.name + ', your routine is not extreme, but it asks a lot from a normal week. You are balancing ' + activitySummary().toLowerCase() + ', ' + trainingLoadLabel() + ', and goals like ' + goalSummary().toLowerCase() + '. The best creatine story for you is not size. It is showing up well again: for movement, focus, and the next session.' + concernLine);
+}
+
+function getShareScores(analysis) {
+  return {
+    Move: Math.min(96, 54 + (analysis.scores.strength + analysis.scores.endurance) * 4 + D.freq * 2),
+    Focus: Math.min(94, 48 + analysis.scores.cognitive * 7 + (hasActivity('desk') ? 8 : 0)),
+    Recover: Math.min(92, 48 + analysis.scores.recovery * 7 + (D.freq >= 4 ? 8 : 0))
+  };
+}
+
+function buildScoreBars(scores) {
+  return Object.keys(scores).map(function(label) {
+    return '<div class="score-line"><span>' + esc(label) + '</span><div class="score-track"><div class="score-fill" style="width:' + scores[label] + '%"></div></div><strong>' + scores[label] + '</strong></div>';
+  }).join('');
+}
+
+function laneInsight(laneKey, metrics) {
+  var copy = {
+    strength: 'Most useful when training gets hard: the final reps, heavier sets, and sessions where quality matters more than hype.',
+    endurance: 'Most useful when your legs feel heavy but you still want to move well. Think real-life tired moments, not only race-day heroics.',
+    cognitive: 'Most useful on demanding days where training is only one part of the load. Work, meetings, and decisions also cost energy.',
+    recovery: 'Most useful because you train ' + D.freq + 'x/week. The win is coming back ready enough to keep the rhythm.',
+    women: 'Most useful when the explanation is built for active women, not copied from old supplement culture.',
+    aging: 'Most useful for the long game: useful muscle, confident movement, and strength routines over time.',
+    safety: 'Most useful when clear answers matter before benefits do: bulky, bloating, hair loss, kidney/heart safety, and dose.'
+  };
+  return copy[laneKey] || lanes[laneKey].short;
+}
+
+function buildPersonalInsights(analysis, metrics, citations) {
+  var cards = [];
+  if (hasActivity('running')) {
+    cards.push(insightCard('Run', 'For your runs', 'The useful moment is simple: your legs start feeling heavy, but you still want to move well. Creatine will not run for you; it may support the quick-energy work your muscles repeat across the week' + citations.mark('endurance') + '.'));
+  }
+  if (hasActivity('padel') || hasActivity('tennis')) {
+    cards.push(insightCard('Court', 'For stop-start sport', 'Padel and tennis are short bursts, brakes, turns, and reactions. That makes repeated-effort research more useful than bodybuilder language' + citations.mark('endurance') + '.'));
+  }
+  if (hasActivity('gym') || hasActivity('weights') || hasGoal('strength') || hasGoal('leaner')) {
+    cards.push(insightCard('Lift', 'For the gym work', 'In the gym, the useful part is not “getting bulky.” It is better training quality when sets get hard, especially if strength is one of your goals' + citations.mark('strength') + '.'));
+  }
+  if (hasActivity('desk') || hasGoal('focus') || hasGoal('mental')) {
+    cards.push(insightCard('Focus', 'For work energy', 'You do not only get tired from workouts. Long screen time, meetings, decisions, and focus can drain you too. That is why the cognitive research belongs in your report' + citations.mark('cognitive') + '.'));
+  }
+  if (D.freq >= 4 || hasGoal('recovery') || hasGoal('recover')) {
+    cards.push(insightCard('Reset', 'For tomorrow', 'Training ' + D.freq + ' times a week means tomorrow matters. The goal is not one heroic session; it is feeling ready enough to keep your rhythm' + citations.mark('recovery') + '.'));
+  }
+  if (D.gender === 'Female') {
+    cards.push(insightCard('You', 'For active women', 'Creatine should be explained through active wellness, strength confidence, and daily consistency, not only through old gym stereotypes' + citations.mark('women') + '.'));
+  }
+  if (parseInt(D.age, 10) >= 35 || hasGoal('aging') || hasGoal('longevity')) {
+    cards.push(insightCard('Long', 'Long-game note', 'For your age and goals, I would connect creatine to active aging: keeping muscle useful, supporting movement, and maintaining strength routines' + citations.mark('aging') + '.'));
+  }
+  if (D.concerns.length) {
+    cards.push(insightCard('Check', 'Straight answers', concernSentence() + citations.mark('safety') + '.'));
+  }
+  cards.push(insightCard('Habit', 'The routine that wins', 'Keep it boring: small dose, same cue, same daily rhythm. The best format is the one you can repeat on a normal busy day.'));
+  return cards.slice(0, 8).join('');
+}
+
+function insightCard(icon, title, copy) {
+  return '<div class="routine-step"><strong><span class="mini-icon">' + esc(icon) + '</span> ' + esc(title) + '</strong>' + copy + '</div>';
+}
+
+function buildRoutineSteps(metrics) {
+  var dose = metrics.weight && metrics.weight >= 80 ? '3-5 g/day is a common research range' : '3g daily keeps the habit simple';
+  var timing = D.activities.join(' ').toLowerCase().indexOf('desk') > -1
+    ? 'Morning or lunch works well for routine pairing'
+    : 'Take with breakfast or after training';
+  var format = D.format || 'No format preference yet';
+  return '<div class="routine-step"><strong>Amount</strong>' + esc(dose) + '. Keep it consistent before chasing timing.</div>' +
+    '<div class="routine-step"><strong>Timing</strong>' + esc(timing) + '. Daily rhythm matters more than perfection.</div>' +
+    '<div class="routine-step"><strong>Format</strong>' + esc(format) + '. Pick the format that makes the habit feel easy, not complicated.</div>';
+}
+
+function concernSentence() {
+  if (!D.concerns.length) return 'You did not flag major concerns, so the result keeps safety language simple.';
+  var answers = {
+    'Will I get bloated?': 'Bloating needs a practical answer: early water-weight changes can happen, but that is not the same as fat gain.',
+    'Will I get bulky?': 'Bulky is mostly training style, food intake, and consistency. Creatine does not choose your body shape for you.',
+    'Is it safe for women?': 'Women-specific evidence should be part of the explanation, especially for active wellness and strength confidence.',
+    'Brain / cognitive benefits?': 'The focus angle should stay careful: demanding days and mental fatigue support, not a magic productivity promise.',
+    'Kidney & heart safety?': 'Healthy-adult safety reviews are useful, while kidney, heart, pregnancy, or medication questions belong with a qualified clinician.',
+    'Hair loss?': 'Hair loss deserves a calm answer: treat it as a misconception area, avoid scary forum claims, and track your own body if it is already a concern.',
+    'Aging & longevity?': 'The long-game story is useful muscle, confident movement, and routines you can keep, not vague longevity hype.',
+    'Right dose for me?': 'Dose should stay simple first. A small daily routine is easier to sustain than loading, cycling, or changing timing every week.'
+  };
+  return D.concerns.slice(0, 2).map(function(concern) {
+    return answers[concern] || 'Your concern is best handled with practical, research-informed education.';
+  }).join(' ');
+}
+
+function createCitationManager() {
+  var used = [];
+  return {
+    mark: function(key) {
+      var index = used.indexOf(key);
+      if (index < 0) {
+        used.push(key);
+        index = used.length - 1;
+      }
+      return '<sup class="cite-num">' + (index + 1) + '</sup>';
+    },
+    basisHtml: function() {
+      return used.map(function(key, index) {
+        var ev = evidence[key][0];
+        return '<li><sup>' + (index + 1) + '</sup> <a href="' + esc(ev.url) + '" target="_blank" rel="noopener">' + esc(ev.title) + '</a><br><span>' + esc(ev.citation) + ' — ' + esc(ev.takeaway) + '</span></li>';
+      }).join('');
+    },
+    footnotesHtml: function() {
+      return used.map(function(key, index) {
+        var ev = evidence[key][0];
+        return '<p><sup>' + (index + 1) + '</sup> ' + esc(ev.citation) + '. Source: ' + esc(ev.url) + '</p>';
+      }).join('');
+    }
+  };
+}
+
+function activitySummary() {
+  if (!D.activities.length) return 'Daily active living';
+  var clean = D.activities.map(function(item) {
+    return item.replace(/[^\w\s/]/g, '').trim();
+  }).slice(0, 2);
+  return clean.join(' + ') + (D.activities.length > 2 ? ' +' : '');
+}
+
+function goalSummary() {
+  return D.goals.length ? D.goals.map(shortClean).join(', ') : 'your selected goals';
+}
+
+function trainingLoadLabel() {
+  return D.freq <= 1 ? 'light routine' : D.freq <= 3 ? 'moderate routine' : D.freq <= 5 ? 'active routine' : 'high-frequency routine';
+}
+
+function shortClean(text) {
+  return String(text).replace(/[^\w\s/&-]/g, '').trim();
+}
+
+function hasActivity(keyword) {
+  return D.activities.join(' ').toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+}
+
+function hasGoal(keyword) {
+  return D.goals.join(' ').toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+}
+
+function esc(value) {
+  return String(value == null ? '' : value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function formatRupiah(value) {
+  return 'Rp ' + Number(value || 0).toLocaleString('id-ID');
+}
+
+/* ─────────────────────────────────────────
+   TOGGLE HELPERS
+───────────────────────────────────────── */
+function tog(el) {
+  el.classList.toggle('on');
+}
+
+function togSingle(el, wrapId) {
+  var w = document.getElementById(wrapId);
+  w.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('on'); });
+  el.classList.add('on');
+}
+
+function togGoal(el) {
+  var onCount = document.querySelectorAll('#goalWrap .goal-card.on').length;
+  if (el.classList.contains('on')) { el.classList.remove('on'); return; }
+  if (onCount >= 4) {
+    document.querySelector('#goalWrap .goal-card.on').classList.remove('on');
+  }
+  el.classList.add('on');
+}
+
+/* ─────────────────────────────────────────
+   FREQUENCY SLIDER
+───────────────────────────────────────── */
+function updFreq(v) {
+  document.getElementById('fNum').textContent = v;
+  var u = v == 0 ? 'rest / recovery only' : v == 1 ? 'day / week' : 'days / week';
+  document.getElementById('fUnit').textContent = u;
+}
+
+function updBudget(v) {
+  D.monthlyBudget = parseInt(v, 10);
+  document.getElementById('budgetVal').textContent = formatRupiah(D.monthlyBudget);
+}
+
+/* ─────────────────────────────────────────
+   ERROR HELPERS
+───────────────────────────────────────── */
+function showErr(id, msg) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = 'block';
+  setTimeout(function() { el.style.display = 'none'; }, 3500);
+}
+
+function hideAllErrors() {
+  ['e0','e1','e2','e3','e4'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+}
+
+/* ─────────────────────────────────────────
+   CTA HANDLERS ON SUCCESS SCREEN
+   Replace these with your actual routes
+───────────────────────────────────────── */
+function handleCTA(type) {
+  if (type === 'science') {
+    window.print();
+  } else if (type === 'product') {
+    window.location.reload();
+  }
+}
+</script>
+
+</body>
+</html>
