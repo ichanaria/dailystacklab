@@ -6,10 +6,10 @@ This is the fastest, free path to get leads flowing into a sheet you own. No thi
 
 1. Go to https://sheets.new (creates a new blank Google Sheet).
 2. Rename it to something like **Daily Stack Lab Leads**.
-3. In row 1, paste this header row (one header per column, A through O):
+3. In row 1, paste this header row (one header per column, A through W):
 
 ```
-createdAt	firstName	email	whatsapp	activityType	creatineAwareness	preferredFormat	mvpInterest	sampleInterest	priceRange	concerns	notes	consent	language	source
+createdAt	captureStage	sessionId	name	email	whatsapp	gender	age	height	weight	freq	activities	goals	concerns	experience	format	productInterest	sampleInterest	monthlyBudget	notes	profileType	consent	source
 ```
 
 Tip: copy that whole line, click cell A1, and paste. It will split across columns automatically.
@@ -24,22 +24,30 @@ Tip: copy that whole line, click cell A1, and paste. It will split across column
 function doPost(e) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   const data = JSON.parse(e.postData.contents);
+  const list = (value) => Array.isArray(value) ? value.join("; ") : (value || "");
 
   sheet.appendRow([
     data.createdAt || new Date().toISOString(),
-    data.firstName || "",
+    data.captureStage || "",
+    data.sessionId || "",
+    data.name || "",
     data.email || "",
     data.whatsapp || "",
-    data.activityType || "",
-    data.creatineAwareness || "",
-    data.preferredFormat || "",
-    data.mvpInterest || "",
+    data.gender || "",
+    data.age || "",
+    data.height || "",
+    data.weight || "",
+    data.freq || "",
+    list(data.activities),
+    list(data.goals),
+    list(data.concerns),
+    data.experience || "",
+    data.format || "",
+    data.productInterest || "",
     data.sampleInterest || "",
-    data.priceRange || "",
-    Array.isArray(data.concerns) ? data.concerns.join("; ") : (data.concerns || ""),
+    data.monthlyBudget || "",
     data.notes || "",
     data.consent ? "yes" : "no",
-    data.language || "",
     data.source || "",
   ]);
 
@@ -90,6 +98,7 @@ Add `CRM_WEBHOOK_URL` to the environment variables in the host's dashboard.
 
 **Rows have empty cells?**
 - Check the header order in the sheet matches the order in the `appendRow` call exactly.
+- If you copied an older version of this script, replace it with the current script above and redeploy a new version.
 
 **Want to redeploy?**
 - Apps Script changes need a new deployment for the URL to pick them up. Use **Deploy → Manage deployments → Edit (pencil icon) → New version**.

@@ -677,6 +677,9 @@ async function handleLeadCsv(req, res) {
     'whatsapp',
     'gender',
     'age',
+    'height',
+    'weight',
+    'freq',
     'activities',
     'goals',
     'concerns',
@@ -686,7 +689,9 @@ async function handleLeadCsv(req, res) {
     'sampleInterest',
     'monthlyBudget',
     'notes',
-    'profileType'
+    'profileType',
+    'consent',
+    'source'
   ];
   const lines = [
     columns.join(','),
@@ -739,6 +744,7 @@ function normalizeLead(profile, body) {
     monthlyBudget: Number(profile.monthlyBudget || 0),
     notes: sanitizeString(profile.notes, 500),
     profileType: sanitizeString(analysis.profileType, 80),
+    consent: Boolean(body.consent),
     source: `${sanitizeString(body.source || 'creatine_fit_quiz', 80)}:${sanitizeString(body.captureStage, 40) || 'email_unlocked'}`
   };
 }
