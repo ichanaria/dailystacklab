@@ -50,15 +50,6 @@
               <span data-lang="en">For people who move, work, train, and want one habit that actually sticks. Starting with creatine in a format you'll actually repeat.</span>
               <span data-lang="id">Wellness stack baru untuk yang bergerak, bekerja, latihan, mengurus keluarga — dan ingin kebiasaan suplemen yang konsisten. Dimulai dari creatine, dibuat lebih mudah.</span>
             </p>
-            <div class="hero-ctas">
-              <a class="btn btn-primary" href="#survey" data-analytics="hero_primary">
-                <span data-lang="en">Take the 2-minute survey</span><span data-lang="id">Ikut survei 2-menit</span>
-                <svg viewBox="0 0 16 16" class="btn-arrow" aria-hidden="true"><path d="M2 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-              <a class="btn btn-ghost" href="#mvp" data-analytics="hero_secondary">
-                <span data-lang="en">See product concepts</span><span data-lang="id">Lihat konsep produk</span>
-              </a>
-            </div>
             <p class="hero-note">
               <span data-lang="en">Early concept. Halal-conscious sourcing and BPOM pathway considered from day one.</span>
               <span data-lang="id">Konsep awal. Sourcing halal-conscious dan BPOM pathway dipertimbangkan sejak awal.</span>
@@ -67,9 +58,18 @@
 
           <div class="hero-visual" data-concept-carousel aria-label="PWR UP product concepts">
             <div class="concept-stage">
-              <img class="concept-card is-active" data-concept-slide src="/images/pwr-up-move-card.svg" alt="PWR UP Move concept card" />
-              <img class="concept-card is-next" data-concept-slide src="/images/pwr-up-focus-card.svg" alt="PWR UP Focus concept card" />
-              <img class="concept-card is-prev" data-concept-slide src="/images/pwr-up-recover-card.svg" alt="PWR UP Recover concept card" />
+              <picture class="concept-card is-active" data-concept-slide>
+                <source media="(min-width: 1024px)" srcset="/images/pwr-up-move-card-landscape.svg" />
+                <img src="/images/pwr-up-move-card.svg" alt="PWR UP Move concept card" />
+              </picture>
+              <picture class="concept-card is-next" data-concept-slide>
+                <source media="(min-width: 1024px)" srcset="/images/pwr-up-focus-card-landscape.svg" />
+                <img src="/images/pwr-up-focus-card.svg" alt="PWR UP Focus concept card" />
+              </picture>
+              <picture class="concept-card is-prev" data-concept-slide>
+                <source media="(min-width: 1024px)" srcset="/images/pwr-up-recover-card-landscape.svg" />
+                <img src="/images/pwr-up-recover-card.svg" alt="PWR UP Recover concept card" />
+              </picture>
             </div>
             <div class="concept-controls" aria-label="Product concept carousel controls">
               <div class="concept-dots" aria-hidden="true">
@@ -89,7 +89,10 @@
       <!-- ======== 2. MOVEMENT IMAGE REVEAL ======== -->
       <section class="movement-reveal section" aria-label="Daily Stack Lab movement mood">
         <div class="movement-window js-reveal">
-          <img src="/images/daily-stack-lab-runner-reveal.png" alt="Runner in motion with Daily Stack Lab movement message" loading="lazy" />
+          <picture>
+            <source media="(min-width: 721px)" srcset="/images/daily-stack-lab-runner-reveal-1040.jpg" />
+            <img src="/images/daily-stack-lab-runner-reveal-640.jpg" alt="Runner in motion with Daily Stack Lab movement message" loading="lazy" decoding="async" width="512" height="640" />
+          </picture>
         </div>
       </section>
 
@@ -177,10 +180,16 @@
           <button type="button" data-edu-dot="5" aria-label="Show slide 6"></button>
         </div>
 
-        <p class="edu-note">
-          <span data-lang="en">Educational context only. Not medical advice. No cure, treat, or prevent claims. No fat-loss or instant-result positioning.</span>
-          <span data-lang="id">Hanya konteks edukasi. Bukan saran medis. Tidak ada klaim menyembuhkan/mengobati/mencegah. Tidak ada positioning fat-loss atau hasil instan.</span>
-        </p>
+      </section>
+
+      <!-- ======== 3. STRENGTH IMAGE REVEAL ======== -->
+      <section class="movement-reveal strength-reveal section" aria-label="Daily Stack Lab strength mood">
+        <div class="movement-window js-reveal">
+          <picture>
+            <source media="(min-width: 721px)" srcset="/images/daily-stack-lab-strength-reveal-1040.jpg" />
+            <img src="/images/daily-stack-lab-strength-reveal-640.jpg" alt="Strength in motion with Daily Stack Lab movement message" loading="lazy" decoding="async" width="512" height="640" />
+          </picture>
+        </div>
       </section>
 
       <!-- ======== 3. PRODUCT CONCEPTS ======== -->
@@ -198,32 +207,6 @@
         </header>
 
         <div class="mvp-grid">
-          <article class="mvp-card">
-            <div class="mvp-mockup mockup-stick has-image">
-              <img
-                src="/images/ChatGPT%20Image%20May%2016%2C%202026%2C%2010_43_17%20AM.png"
-                alt="Daily Stack Lab electrolytes drink mix pouch and stick pack concept"
-                onerror="this.closest('.mvp-mockup').classList.remove('has-image'); this.remove();"
-              />
-              <div class="stick-fallback" aria-hidden="true">
-                <div class="stick-shape">
-                  <span class="stick-brand">PWR · MOVE</span>
-                  <span class="stick-line"></span>
-                  <span class="stick-product">CREATINE + ELECTROLYTES</span>
-                  <span class="stick-dose">3g</span>
-                  <span class="stick-flavor">Honey Lemon</span>
-                </div>
-                <div class="stick-shadow"></div>
-              </div>
-            </div>
-            <p class="card-tag"><span data-lang="en">Concept A</span><span data-lang="id">Konsep A</span></p>
-            <h3><span data-lang="en">Creatine + electrolytes drink mix</span><span data-lang="id">Drink mix creatine + elektrolit</span></h3>
-            <p class="card-desc">
-              <span data-lang="en">A refreshing stick-pack for movement days, warm weather, and active hydration. Clean taste, easy mixing, no stimulant.</span>
-              <span data-lang="id">Stick-pack yang menyegarkan untuk hari aktif, cuaca panas, dan hidrasi. Rasa bersih, mudah larut, tanpa stimulan.</span>
-            </p>
-          </article>
-
           <article class="mvp-card">
             <div class="mvp-mockup mockup-jar has-image">
               <img
@@ -246,11 +229,37 @@
                 <div class="jar-shadow"></div>
               </div>
             </div>
-            <p class="card-tag"><span data-lang="en">Concept B</span><span data-lang="id">Konsep B</span></p>
-            <h3><span data-lang="en">Creatine honey gummy · Honey Lemon</span><span data-lang="id">Gummy creatine madu</span></h3>
+            <p class="card-tag"><span data-lang="en">Concept A</span><span data-lang="id">Konsep A</span></p>
+            <h3><span data-lang="en">Creatine honey gummy · Honey Lemon</span><span data-lang="id">Gummy creatine madu · Honey Lemon</span></h3>
             <p class="card-desc">
               <span data-lang="en">A daily format for people who want creatine without shaker bottles, powder mess, or complicated routines.</span>
               <span data-lang="id">Format harian untuk yang mau creatine tanpa shaker, bubuk berantakan, atau rutinitas ribet.</span>
+            </p>
+          </article>
+
+          <article class="mvp-card">
+            <div class="mvp-mockup mockup-stick has-image">
+              <img
+                src="/images/ChatGPT%20Image%20May%2016%2C%202026%2C%2010_43_17%20AM.png"
+                alt="Daily Stack Lab electrolytes drink mix pouch and stick pack concept"
+                onerror="this.closest('.mvp-mockup').classList.remove('has-image'); this.remove();"
+              />
+              <div class="stick-fallback" aria-hidden="true">
+                <div class="stick-shape">
+                  <span class="stick-brand">PWR · MOVE</span>
+                  <span class="stick-line"></span>
+                  <span class="stick-product">CREATINE + ELECTROLYTES</span>
+                  <span class="stick-dose">3g</span>
+                  <span class="stick-flavor">Honey Lemon</span>
+                </div>
+                <div class="stick-shadow"></div>
+              </div>
+            </div>
+            <p class="card-tag"><span data-lang="en">Concept B</span><span data-lang="id">Konsep B</span></p>
+            <h3><span data-lang="en">Creatine + electrolytes drink mix</span><span data-lang="id">Drink mix creatine + elektrolit</span></h3>
+            <p class="card-desc">
+              <span data-lang="en">A refreshing stick-pack for movement days, warm weather, and active hydration. Clean taste, easy mixing, no stimulant.</span>
+              <span data-lang="id">Stick-pack yang menyegarkan untuk hari aktif, cuaca panas, dan hidrasi. Rasa bersih, mudah larut, tanpa stimulan.</span>
             </p>
           </article>
         </div>

@@ -1,0 +1,45 @@
+<svg width="620" viewBox="0 0 620 360" role="img" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="moveLandGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FAC775"/>
+      <stop offset="54%" stop-color="#F4B23C"/>
+      <stop offset="100%" stop-color="#FF8A3D"/>
+    </linearGradient>
+    <linearGradient id="moveLandFade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1F2426" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#1F2426" stop-opacity="0.48"/>
+    </linearGradient>
+    <clipPath id="moveLandCard">
+      <rect x="18" y="18" width="584" height="324" rx="30"/>
+    </clipPath>
+  </defs>
+  <rect x="18" y="18" width="584" height="324" rx="30" fill="url(#moveLandGrad)"/>
+  <ellipse cx="488" cy="52" rx="166" ry="118" fill="#ffffff" opacity="0.08" clip-path="url(#moveLandCard)"/>
+  <ellipse cx="116" cy="324" rx="210" ry="96" fill="#ffffff" opacity="0.07" clip-path="url(#moveLandCard)"/>
+  <rect x="18" y="18" width="584" height="324" rx="30" fill="url(#moveLandFade)" opacity="0.72"/>
+
+  <text x="54" y="72" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="800" letter-spacing="4" fill="#ffffff" opacity="0.72">MORNING</text>
+  <text x="52" y="156" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="78" font-weight="800" fill="#ffffff" letter-spacing="-2">Move</text>
+  <line x1="54" y1="174" x2="216" y2="174" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+  <text x="54" y="206" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="650" fill="#ffffff" opacity="0.9">Creatine-based daily stack</text>
+  <text x="54" y="240" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="16" font-weight="450" fill="#ffffff" opacity="0.88">
+    <tspan x="54" dy="0">Fuel your morning. Support your strength.</tspan>
+    <tspan x="54" dy="26">One simple habit before the day takes over.</tspan>
+  </text>
+
+  <rect x="380" y="64" width="154" height="34" rx="17" fill="#ffffff" opacity="0.22"/>
+  <text x="457" y="86" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">Honey Lemon</text>
+  <rect x="380" y="112" width="86" height="34" rx="17" fill="#ffffff" opacity="0.22"/>
+  <text x="423" y="134" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">Halal</text>
+  <rect x="476" y="112" width="126" height="34" rx="17" fill="#ffffff" opacity="0.22"/>
+  <text x="539" y="134" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">28-day pack</text>
+
+  <line x1="380" y1="174" x2="560" y2="174" stroke="#ffffff" stroke-width="0.5" opacity="0.28"/>
+  <text x="380" y="208" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="500" fill="#ffffff" opacity="0.68">Daily dose</text>
+  <text x="380" y="232" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="17" font-weight="800" fill="#ffffff">3 gummies / day</text>
+  <text x="380" y="254" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="500" fill="#ffffff" opacity="0.78">or 1 sachet hydration mix</text>
+
+  <rect x="380" y="280" width="172" height="38" rx="13" fill="#1F2426" opacity="0.9"/>
+  <circle cx="402" cy="299" r="4.5" fill="#9DD84B"/>
+  <text x="416" y="303" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="#F7F1E8" letter-spacing="0.5">VALIDATING NOW</text>
+</svg>

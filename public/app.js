@@ -197,11 +197,21 @@
     const dots = Array.prototype.slice.call(document.querySelectorAll("[data-edu-dot]"));
     const prevBtn = document.querySelector("[data-edu-prev]");
     const nextBtn = document.querySelector("[data-edu-next]");
+    const gridQuery = window.matchMedia("(min-width: 720px)");
     let activeSlide = 0;
     let autoTimer = null;
 
     function showEduSlide(index, source) {
       if (!slides.length) return;
+      if (gridQuery.matches) {
+        slides.forEach(function (slide) {
+          slide.setAttribute("aria-hidden", "false");
+        });
+        dots.forEach(function (dot) {
+          dot.classList.remove("is-active");
+        });
+        return;
+      }
       activeSlide = (index + slides.length) % slides.length;
       slides.forEach(function (slide, i) {
         const isActive = i === activeSlide;
@@ -220,9 +230,18 @@
 
     function restartAutoSlide() {
       if (autoTimer) window.clearInterval(autoTimer);
+      if (gridQuery.matches) {
+        autoTimer = null;
+        return;
+      }
       autoTimer = window.setInterval(function () {
         advanceEduSlide("auto");
       }, 4200);
+    }
+
+    function syncEduLayout() {
+      showEduSlide(activeSlide);
+      restartAutoSlide();
     }
 
     if (prevBtn) {
@@ -254,9 +273,13 @@
       if (autoTimer) window.clearInterval(autoTimer);
     });
     eduCarousel.addEventListener("focusout", restartAutoSlide);
+    if (typeof gridQuery.addEventListener === "function") {
+      gridQuery.addEventListener("change", syncEduLayout);
+    } else if (typeof gridQuery.addListener === "function") {
+      gridQuery.addListener(syncEduLayout);
+    }
 
-    showEduSlide(0);
-    restartAutoSlide();
+    syncEduLayout();
   }
 
   // =========================================================
