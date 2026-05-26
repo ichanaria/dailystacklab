@@ -217,6 +217,10 @@ input:focus, select:focus, textarea:focus {
   user-select: none;
 }
 
+.budget-box .scale-lbl {
+  margin-top: 2px;
+}
+
 .freq-num {
   font-size: 38px;
   font-weight: 700;
@@ -246,6 +250,10 @@ input:focus, select:focus, textarea:focus {
   display: block;
   margin: 0;
   touch-action: pan-y;
+}
+
+.budget-range {
+  margin: 2px 0 0;
 }
 
 .freq-range::-webkit-slider-runnable-track,
@@ -595,15 +603,17 @@ input:focus, select:focus, textarea:focus {
   background: #F7F1E8;
   border: 1px solid rgba(31,36,38,0.1);
   border-radius: 12px;
-  padding: 13px;
+  padding: 16px 16px 14px;
+  overflow: hidden;
 }
 
 .budget-value {
   color: #F4B23C;
-  font-size: 20px;
+  font-size: clamp(22px, 5.2vw, 28px);
   font-weight: 700;
   text-align: center;
-  margin-bottom: 10px;
+  line-height: 1;
+  margin-bottom: 14px;
 }
 
 .optional-note {
@@ -1522,7 +1532,7 @@ input:focus, select:focus, textarea:focus {
             <label>Your average current monthly supplement budget</label>
             <div class="budget-box">
               <div class="budget-value" id="budgetVal">Rp 300.000</div>
-              <input type="range" min="100000" max="1000000" step="50000" value="300000" id="iBudget" oninput="updBudget(this.value)"/>
+              <input type="range" min="100000" max="1000000" step="50000" value="300000" id="iBudget" class="budget-range" oninput="updBudget(this.value)" aria-label="Average monthly supplement budget"/>
               <div class="scale-lbl"><span>Rp 100.000</span><span>Rp 1.000.000</span></div>
             </div>
           </div>
@@ -1591,16 +1601,7 @@ var lastAnalysis = null;
 var previewCaptured = false;
 
 function getQuizSessionId() {
-  try {
-    var key = 'dsl_quiz_session_id';
-    var existing = sessionStorage.getItem(key);
-    if (existing) return existing;
-    var value = 'quiz_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
-    sessionStorage.setItem(key, value);
-    return value;
-  } catch (_) {
-    return 'quiz_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
-  }
+  return 'quiz_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
 }
 
 var stepLabels = [
@@ -2432,7 +2433,7 @@ function buildSharePanel(title) {
     '<div class="share-title">Ready to share</div>' +
     '<div class="share-copy">Copy a short version of this result for WhatsApp, Threads, or your own notes.</div>' +
     '<div class="share-actions">' +
-      '<button type="button" class="share-btn primary" onclick="copyReportSummary()">Copy result</button>' +
+      '<button type="button" class="share-btn primary" onclick="copyReportSummary()">Share Report</button>' +
       '<button type="button" class="share-btn secondary" onclick="window.print()">Save / print</button>' +
     '</div>' +
     '<div class="share-status" id="shareStatus"></div>' +
@@ -2764,10 +2765,91 @@ function initFrequencySlider() {
   window.addEventListener('mouseup', stopDragging);
 }
 
+function initBudgetSlider() {
+  var range = document.getElementById('iBudget');
+  var box = range && range.closest('.budget-box');
+  if (!range || !box) return;
+
+  var dragging = false;
+
+  function getClientX(event) {
+    if (event.touches && event.touches.length) return event.touches[0].clientX;
+    if (event.changedTouches && event.changedTouches.length) return event.changedTouches[0].clientX;
+    return event.clientX;
+  }
+
+  function valueFromEvent(event) {
+    var rect = range.getBoundingClientRect();
+    var clientX = getClientX(event);
+    if (typeof clientX !== 'number') return;
+    var x = Math.min(Math.max(clientX, rect.left), rect.right);
+    var ratio = rect.width ? (x - rect.left) / rect.width : 0;
+    var min = Number(range.min || 0);
+    var max = Number(range.max || 1000000);
+    var step = Number(range.step || 1);
+    var raw = min + ratio * (max - min);
+    var value = Math.round((raw - min) / step) * step + min;
+    value = Math.min(Math.max(value, min), max);
+    range.value = String(value);
+    updBudget(value);
+  }
+
+  function startDrag(event) {
+    if (event.type === 'mousedown' && event.button !== 0) return;
+    dragging = true;
+    valueFromEvent(event);
+    if (event.cancelable) event.preventDefault();
+  }
+
+  function moveDrag(event) {
+    if (!dragging) return;
+    valueFromEvent(event);
+    if (event.cancelable) event.preventDefault();
+  }
+
+  function stopDragging(event) {
+    dragging = false;
+    if (event && event.cancelable) event.preventDefault();
+  }
+
+  if (window.PointerEvent) {
+    box.addEventListener('pointerdown', function(event) {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      dragging = true;
+      valueFromEvent(event);
+      try { box.setPointerCapture(event.pointerId); } catch (_) {}
+    });
+
+    box.addEventListener('pointermove', function(event) {
+      if (!dragging) return;
+      valueFromEvent(event);
+    });
+
+    box.addEventListener('pointerup', function(event) {
+      stopDragging(event);
+      try { box.releasePointerCapture(event.pointerId); } catch (_) {}
+    });
+    box.addEventListener('pointercancel', stopDragging);
+    return;
+  }
+
+  box.addEventListener('touchstart', startDrag, { passive: false });
+  box.addEventListener('touchmove', moveDrag, { passive: false });
+  box.addEventListener('touchend', stopDragging, { passive: false });
+  box.addEventListener('touchcancel', stopDragging, { passive: false });
+  box.addEventListener('mousedown', startDrag);
+  window.addEventListener('mousemove', moveDrag);
+  window.addEventListener('mouseup', stopDragging);
+}
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initFrequencySlider);
+  document.addEventListener('DOMContentLoaded', function() {
+    initFrequencySlider();
+    initBudgetSlider();
+  });
 } else {
   initFrequencySlider();
+  initBudgetSlider();
 }
 
 function updBudget(v) {

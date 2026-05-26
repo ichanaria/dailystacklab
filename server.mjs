@@ -640,16 +640,14 @@ async function handleLeadPost(req, res) {
   try {
     const body = await parseBody(req);
     const profile = body.profile || body;
-    const lead = normalizeLead(profile, body);
-    const errors = validateLead(lead);
+    const incomingLead = normalizeLead(profile, body);
+    const errors = validateLead(incomingLead);
 
     if (Object.keys(errors).length) {
       return jsonResponse(res, 400, { ok: false, errors });
     }
 
-    lead.id = randomUUID();
-    lead.createdAt = new Date().toISOString();
-    await fs.appendFile(leadsPath, `${JSON.stringify(lead)}\n`, 'utf8');
+    const lead = await upsertLead(incomingLead);
     if (process.env.CRM_WEBHOOK_URL) {
       forwardLeadToWebhook(lead).catch((error) => {
         console.error('CRM webhook failed:', error.message);
@@ -764,6 +762,71 @@ function sanitizeArray(items) {
 
 function sanitizeString(value, maxLength) {
   return String(value || '').trim().replace(/\s+/g, ' ').slice(0, maxLength);
+}
+
+function mergeLead(existing, incoming) {
+  const merged = { ...existing };
+  for (const [key, value] of Object.entries(incoming)) {
+    if (Array.isArray(value)) {
+      if (value.length) merged[key] = value;
+    } else if (value !== '' && value !== 0 && value !== false && value !== null && value !== undefined) {
+      merged[key] = value;
+    } else if (key === 'consent' && value === true) {
+      merged[key] = true;
+    }
+  }
+  merged.captureStage = existing.captureStage === 'email_unlocked' || incoming.captureStage === 'email_unlocked'
+    ? 'email_unlocked'
+    : incoming.captureStage || existing.captureStage;
+  merged.consent = Boolean(existing.consent || incoming.consent || merged.captureStage === 'email_unlocked');
+  merged.id = existing.id || incoming.id || randomUUID();
+  merged.createdAt = existing.createdAt || incoming.createdAt || new Date().toISOString();
+  merged.updatedAt = new Date().toISOString();
+  return merged;
+}
+
+function isSameLeadAttempt(existing, incoming) {
+  if (!existing.sessionId || existing.sessionId !== incoming.sessionId) return false;
+  if (existing.email && incoming.email && existing.email !== incoming.email) return false;
+
+  const existingTime = Date.parse(existing.updatedAt || existing.createdAt || '');
+  if (!Number.isFinite(existingTime)) return true;
+  const ageMs = Date.now() - existingTime;
+  return ageMs <= 6 * 60 * 60 * 1000;
+}
+
+async function upsertLead(incoming) {
+  const now = new Date().toISOString();
+  incoming.id = randomUUID();
+  incoming.createdAt = now;
+
+  if (!incoming.sessionId) {
+    await fs.appendFile(leadsPath, `${JSON.stringify(incoming)}\n`, 'utf8');
+    return incoming;
+  }
+
+  const leads = await readNdjsonChronological(leadsPath);
+  const index = [...leads].reverse().findIndex((lead) => isSameLeadAttempt(lead, incoming));
+  const existingIndex = index === -1 ? -1 : leads.length - 1 - index;
+
+  if (existingIndex === -1) {
+    await fs.appendFile(leadsPath, `${JSON.stringify(incoming)}\n`, 'utf8');
+    return incoming;
+  }
+
+  const merged = mergeLead(leads[existingIndex], incoming);
+  leads[existingIndex] = merged;
+  await fs.writeFile(leadsPath, `${leads.map((lead) => JSON.stringify(lead)).join('\n')}\n`, 'utf8');
+  return merged;
+}
+
+async function readNdjsonChronological(filePath) {
+  try {
+    const content = await fs.readFile(filePath, 'utf8');
+    return content.split('\n').filter(Boolean).map((line) => JSON.parse(line));
+  } catch {
+    return [];
+  }
 }
 
 async function readNdjson(filePath) {

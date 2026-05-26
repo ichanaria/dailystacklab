@@ -26,7 +26,7 @@ function doPost(e) {
   const data = JSON.parse(e.postData.contents);
   const list = (value) => Array.isArray(value) ? value.join("; ") : (value || "");
 
-  sheet.appendRow([
+  const row = [
     data.createdAt || new Date().toISOString(),
     data.captureStage || "",
     data.sessionId || "",
@@ -49,7 +49,37 @@ function doPost(e) {
     data.notes || "",
     data.consent ? "yes" : "no",
     data.source || "",
-  ]);
+  ];
+
+  const sessionId = data.sessionId || "";
+  const email = data.email || "";
+  let targetRow = -1;
+
+  if (sessionId && sheet.getLastRow() > 1) {
+    const rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, row.length).getValues();
+    for (let i = rows.length - 1; i >= 0; i--) {
+      const existingSessionId = rows[i][2];
+      const existingEmail = rows[i][4];
+      if (existingSessionId === sessionId && (!existingEmail || !email || existingEmail === email)) {
+        targetRow = i + 2;
+        break;
+      }
+    }
+  }
+
+  if (targetRow > -1) {
+    const existing = sheet.getRange(targetRow, 1, 1, row.length).getValues()[0];
+    const merged = row.map((value, index) => value !== "" ? value : existing[index]);
+    if (existing[1] === "email_unlocked" || data.captureStage === "email_unlocked") {
+      merged[1] = "email_unlocked";
+    }
+    if (existing[20] === "yes" || data.consent) {
+      merged[20] = "yes";
+    }
+    sheet.getRange(targetRow, 1, 1, merged.length).setValues([merged]);
+  } else {
+    sheet.appendRow(row);
+  }
 
   return ContentService
     .createTextOutput(JSON.stringify({ ok: true }))
