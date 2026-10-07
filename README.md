@@ -125,7 +125,6 @@ Key components include:
 - `DEPLOY.md` — deployment instructions
 - `ENGINEER_HANDOFF_LANDING_PAGE.md` — detailed implementation handoff
 - `LANDING_PAGE_WIREFRAME_v0.1.md` — initial UX and content structure
-- `PWR_UP_Brand_Identity_v1.1.md` — brand and product direction
 
 ---
 
