@@ -4,6 +4,8 @@ An AI-assisted full-stack application I built to validate a consumer wellness pr
 
 **Live prototype:** https://dailystacklab.onrender.com/
 
+![PWR UP Customer Validation Platform](assets/dailystacklab-hero.png)
+
 PWR UP is an active-wellness brand I am building around everyday performance, starting with creatine-based products.
 
 Rather than relying only on assumptions, presentations, or outsourced research, I wanted to put the proposition in front of real users, capture structured feedback, and use that evidence to make an actual product decision.
